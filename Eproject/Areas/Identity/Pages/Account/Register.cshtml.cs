@@ -77,6 +77,30 @@ namespace Eproject.Areas.Identity.Pages.Account
             public string Name { get; set; }
 
             [Required]
+            [MaxLength(6)]
+            [DataType(DataType.Text)]
+            [Display(Name = "Roll/Employee Number")]
+            public string Code { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [RegularExpression(@"^\d+$", ErrorMessage = "Class must be a numeric value.")]
+            [Display(Name = "Class")]
+            public string Class { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [MaxLength(20)]
+            [Display(Name = "Specification")]
+            public string Specification { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Specification")]
+            [MaxLength(1)]
+            public string Section { get; set; }
+
+            [Required]
             [Display(Name = "Admission Date")]
             [DataType(DataType.Date)]
             public DateTime AdmissionDate { get; set; }
@@ -124,6 +148,10 @@ namespace Eproject.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
                 user.Name = Input.Name;
+                user.Class = Input.Class;
+                user.Code = Input.Code;
+                user.Section = Input.Section;
+                user.Specification = Input.Specification;
                 user.AdmissionDate = DateTime.Now;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

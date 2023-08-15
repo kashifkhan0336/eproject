@@ -1,16 +1,25 @@
-﻿using Eproject.Models;
+﻿using Eproject.Areas.Identity.Data;
+using Eproject.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Eproject.Controllers
 {
-    public class HomeController : Controller
+    
+    public partial class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<EprojectUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, RoleManager<IdentityRole> roleManager, UserManager<EprojectUser> userManager)
         {
+            _userManager = userManager;
             _logger = logger;
+            _roleManager = roleManager;
         }
 
         public IActionResult Index()
@@ -18,9 +27,13 @@ namespace Eproject.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+
+
+
+        public async Task<IActionResult> Privacy()
         {
-            return View();
+            var roles = await _roleManager.Roles.ToListAsync();
+            return View(roles);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
