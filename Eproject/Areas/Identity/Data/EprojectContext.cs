@@ -1,4 +1,4 @@
-﻿using Eproject.Areas.Identity.Data;
+﻿using Eproject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +7,9 @@ namespace Eproject.Data;
 
 public class EprojectContext : IdentityDbContext<EprojectUser>
 {
+    public DbSet<FaqEntry> FaqEntries { get; set; }
+    public DbSet<Survey> Surveys { get; set; }
+    public DbSet<AllowedRole> AllowedRoles { get; set; }
     public EprojectContext(DbContextOptions<EprojectContext> options)
         : base(options)
     {

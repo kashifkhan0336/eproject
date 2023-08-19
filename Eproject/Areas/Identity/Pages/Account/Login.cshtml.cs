@@ -8,13 +8,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Eproject.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Eproject.Models;
 
 namespace Eproject.Areas.Identity.Pages.Account
 {
@@ -113,6 +113,8 @@ namespace Eproject.Areas.Identity.Pages.Account
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                _logger.LogError(Input.Email);
+                _logger.LogError(Input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
@@ -135,7 +137,7 @@ namespace Eproject.Areas.Identity.Pages.Account
                 }
                 else
                 {
-
+                    _logger.LogCritical(result.ToString());
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }

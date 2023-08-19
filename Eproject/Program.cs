@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Eproject.Data;
 using Eproject.Areas.Identity.Data;
 using Microsoft.Extensions.DependencyInjection;
+using Eproject.Models;
 
 namespace Eproject
 {
@@ -15,15 +16,24 @@ namespace Eproject
 
             builder.Services.AddDbContext<EprojectContext>(options => options.UseSqlServer(connectionString));
 
-            builder.Services.AddDefaultIdentity<EprojectUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<EprojectContext>();
+            builder.Services.AddDefaultIdentity<EprojectUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequiredLength = 8; // Adjust as needed
+            })
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<EprojectContext>();
+
             builder.Services.AddScoped<SignInManager<EprojectUser>, CustomSignInManager<EprojectUser>>();
-            builder.Services.AddCoreAdmin();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
+
             var app = builder.Build();
             app.MapDefaultControllerRoute();
 
@@ -31,53 +41,75 @@ namespace Eproject
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
+
             app.UseRouting();
 
+            app.UseAuthentication(); // UseAuthentication before UseAuthorization
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+
+            // Data seeding (roles, users)
             using (var scope = app.Services.CreateScope())
             {
+                var dbContext = scope.ServiceProvider.GetRequiredService<EprojectContext>();
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-                string[] roles = new string[] { "Admin", "Facualty", "Student" };
-                foreach (var role in roles)
-                {
-                    if (!await roleManager.RoleExistsAsync(role))
-                    {
-                        await roleManager.CreateAsync(new IdentityRole(role));
-                    }
-                }
-
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<EprojectUser>>();
+                SeedData.Initialize(scope.ServiceProvider);
+                await SeedRolesAsync(roleManager);
+                await SeedDefaultUserAsync(userManager);
             }
 
-            using (var scope = app.Services.CreateScope())
-            {
-                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<EprojectUser>>();
-                string email = "kashifkhan0336@gmail.com";
-                string password = "Kashif_123";
+            app.Run();
+        }
 
-                if(await userManager.FindByEmailAsync(email) == null)
+        private static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
+        {
+            string[] roles = new string[] { "Admin", "Faculty", "Student" };
+
+            foreach (var role in roles)
+            {
+                if (!await roleManager.RoleExistsAsync(role))
                 {
-                    var user = new EprojectUser
-                    {
-                        Email = email,
-                        UserName = email
-                    };
-                    await userManager.CreateAsync(user, password);
+                    await roleManager.CreateAsync(new IdentityRole(role));
+                }
+            }
+        }
+
+        private static async Task SeedDefaultUserAsync(UserManager<EprojectUser> userManager)
+        {
+            string email = "kashifkhan0336@gmail.com";
+            string password = "Kashif_123";
+
+            if (await userManager.FindByEmailAsync(email) == null)
+            {
+                var user = new EprojectUser
+                {
+                    Email = email,
+                    UserName = email,
+                    Status = UserStatus.Active,
+                    Class = "1",
+                    Section = "A",
+                    Specification = "S",
+                    Code = "A12345",
+                    Name = "Admin"
+                };
+
+                var result = await userManager.CreateAsync(user, password);
+
+                if (result.Succeeded)
+                {
                     await userManager.AddToRoleAsync(user, "Admin");
                 }
             }
-            app.Run();
         }
     }
 }

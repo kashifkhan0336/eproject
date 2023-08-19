@@ -12,17 +12,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Eproject.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Eproject.Models;
 
 namespace Eproject.Areas.Identity.Pages.Account
 {
-    public class RegisterModel : PageModel
+    public partial class RegisterModel : PageModel
     {
         private readonly SignInManager<EprojectUser> _signInManager;
         private readonly UserManager<EprojectUser> _userManager;
@@ -65,74 +65,6 @@ namespace Eproject.Areas.Identity.Pages.Account
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        public class InputModel
-        {
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Full name")]
-            public string Name { get; set; }
-
-            [Required]
-            [MaxLength(6)]
-            [DataType(DataType.Text)]
-            [Display(Name = "Roll/Employee Number")]
-            public string Code { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [RegularExpression(@"^\d+$", ErrorMessage = "Class must be a numeric value.")]
-            [Display(Name = "Class")]
-            public string Class { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [MaxLength(20)]
-            [Display(Name = "Specification")]
-            public string Specification { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Specification")]
-            [MaxLength(1)]
-            public string Section { get; set; }
-
-            [Required]
-            [Display(Name = "Admission Date")]
-            [DataType(DataType.Date)]
-            public DateTime AdmissionDate { get; set; }
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
-
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-            [DataType(DataType.Password)]
-            [Display(Name = "Password")]
-            public string Password { get; set; }
-
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
-        }
-
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -146,6 +78,8 @@ namespace Eproject.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                _logger.LogError(Input.Email);
+                _logger.LogError(Input.Password);
                 var user = CreateUser();
                 user.Name = Input.Name;
                 user.Class = Input.Class;

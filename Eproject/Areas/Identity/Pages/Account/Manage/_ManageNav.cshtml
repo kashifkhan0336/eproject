@@ -1,4 +1,5 @@
-﻿@inject SignInManager<EprojectUser> SignInManager
+﻿@using Eproject.Models;
+@inject SignInManager<EprojectUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

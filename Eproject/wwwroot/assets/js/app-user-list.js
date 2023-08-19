@@ -21,11 +21,11 @@ $(function () {
   // Variable declaration for table
   var dt_user_table = $('.datatables-users'),
     select2 = $('.select2'),
-    userView = 'app-user-view-account.html',
+    userView = 'users/manage',
     statusObj = {
-      1: { title: 'Pending', class: 'bg-label-warning' },
-      2: { title: 'Active', class: 'bg-label-success' },
-      3: { title: 'Inactive', class: 'bg-label-secondary' }
+      2: { title: 'Pending', class: 'bg-label-warning' },
+      0: { title: 'Active', class: 'bg-label-success' },
+      1: { title: 'Inactive', class: 'bg-label-secondary' }
     };
 
   if (select2.length) {
@@ -39,18 +39,21 @@ $(function () {
   // Users datatable
   if (dt_user_table.length) {
     var dt_user = dt_user_table.DataTable({
-      ajax: assetsPath + 'json/user-list.json', // JSON file to add data
+        ajax: '/users/json', // JSON file to add data
       columns: [
         // columns according to JSON
         { data: '' },
         { data: 'full_name' },
-        { data: 'roll_number' },
-        { data: 'role' },
-        { data: 'current_plan' },
-        { data: 'billing' },
-        { data: 'status' },
-          { data: 'action' },
-          { data: '' }
+        { data: 'full_name' },
+         { data: 'role' },     
+          { data: 'specification' },
+          { data: 'roll_number' },
+          { data: 'class' },
+          { data: 'status' },
+          { data: 'admission_date' },
+          { data: 'section' },
+
+        { data: 'action' }
       ],
       columnDefs: [
         {
@@ -63,7 +66,30 @@ $(function () {
           render: function (data, type, full, meta) {
             return '';
           }
-        },
+         },
+          {
+
+              data: 'roll_number', // Make sure 'roll_number' matches the field name in your JSON data
+              render: function (data, type, full, meta) {
+                  return '<span class="text-heading">' + data + '</span>';
+              }
+         },
+          {
+
+              data: 'class', // Make sure 'roll_number' matches the field name in your JSON data
+              render: function (data, type, full, meta) {
+                  return '<span class="text-heading">' + data + '</span>';
+              }
+          },
+          {
+
+              data: 'admission_date', // Make sure 'roll_number' matches the field name in your JSON data
+              render: function (data, type, full, meta) {
+                  console.log(data)
+                  return '<span class="text-heading">' + data + '</span>';
+              }
+          },
+
         {
           // For Checkboxes
           targets: 1,
@@ -106,8 +132,8 @@ $(function () {
               '</div>' +
               '</div>' +
               '<div class="d-flex flex-column">' +
-              '<a href="' +
-              userView +
+                '<a href="' +
+                userView + "?userid=" + full["userId"]+
               '" class="text-heading text-truncate"><span class="fw-semibold">' +
               $name +
               '</span></a>' +
@@ -125,11 +151,8 @@ $(function () {
           render: function (data, type, full, meta) {
             var $role = full['role'];
             var roleBadgeObj = {
-              Subscriber: '<i class="mdi mdi-account-outline mdi-20px text-primary me-2"></i>',
-              Subscriber: '<i class="mdi mdi-account-outline mdi-20px text-primary me-2"></i>',
-              Author: '<i class="mdi mdi-cog-outline mdi-20px text-warning me-2"></i>',
-              Maintainer: '<i class="mdi mdi-chart-donut mdi-20px text-success me-2"></i>',
-              Editor: '<i class="mdi mdi-pencil-outline mdi-20px text-info me-2"></i>',
+                Student: '<i class="mdi mdi-account-outline mdi-20px text-primary me-2"></i>',
+                Faculty: '<i class="mdi mdi-cog-outline mdi-20px text-warning me-2"></i>',
               Admin: '<i class="mdi mdi-laptop mdi-20px text-danger me-2"></i>'
             };
             return "<span class='text-truncate d-flex align-items-center'>" + roleBadgeObj[$role] + $role + '</span>';
@@ -139,17 +162,16 @@ $(function () {
           // Plans
           targets: 4,
           render: function (data, type, full, meta) {
-            var $plan = full['current_plan'];
+            var $plan = full['specification'];
 
             return '<span class="text-heading">' + $plan + '</span>';
           }
         },
         {
           // User Status
-          targets: 6,
-          render: function (data, type, full, meta) {
+          targets: 9,
+            render: function (data, type, full, meta) {
             var $status = full['status'];
-
             return (
               '<span class="badge rounded-pill ' +
               statusObj[$status].class +
@@ -160,12 +182,13 @@ $(function () {
           }
           },
           {
-              // Roll Number
-              targets: 3, // Index of the roll_number column in the "columns" array
-              responsivePriority: 4,
+              // Billing
+              targets: 7, // Adjust the target index accordingly
               render: function (data, type, full, meta) {
-                  var $rollNumber = full['roll_number'];
-                  return $rollNumber; // Render the roll_number value
+
+                  var $billing = full['section'];
+
+                  return '<span class="text-heading">' + $billing + '</span>';
               }
           },
         {
@@ -180,7 +203,7 @@ $(function () {
               '<button class="btn btn-sm btn-icon btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical mdi-20px"></i></button>' +
               '<div class="dropdown-menu dropdown-menu-end m-0">' +
               '<a href="' +
-              userView +
+              userView + 
               '" class="dropdown-item"><i class="mdi mdi-eye-outline me-2"></i><span>View</span></a>' +
               '<a href="javascript:;" class="dropdown-item"><i class="mdi mdi-pencil-outline me-2"></i><span>Edit</span></a>' +
               '<a href="javascript:;" class="dropdown-item delete-record"><i class="mdi mdi-delete-outline me-2"></i><span>Delete</span></a>' +
@@ -418,7 +441,7 @@ $(function () {
           .every(function () {
             var column = this;
             var select = $(
-              '<select id="UserPlan" class="form-select text-capitalize"><option value=""> Select Plan </option></select>'
+              '<select id="UserPlan" class="form-select text-capitalize"><option value=""> Select Specification </option></select>'
             )
               .appendTo('.user_plan')
               .on('change', function () {
@@ -436,7 +459,7 @@ $(function () {
           });
         // Adding status filter once table initialized
         this.api()
-          .columns(6)
+          .columns(7)
           .every(function () {
             var column = this;
             var select = $(
@@ -444,7 +467,7 @@ $(function () {
             )
               .appendTo('.user_status')
               .on('change', function () {
-                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                  var val = $.fn.dataTable.util.escapeRegex($(this).val());
                 column.search(val ? '^' + val + '$' : '', true, false).draw();
               });
 

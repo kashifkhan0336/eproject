@@ -1,5 +1,4 @@
-﻿using Eproject.Areas.Identity.Data;
-using Eproject.Models;
+﻿using Eproject.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +7,7 @@ using System.Diagnostics;
 
 namespace Eproject.Controllers
 {
-    
+
     public partial class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

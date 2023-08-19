@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Eproject.Models;
 
 namespace Eproject.Areas.Identity.Data
 {
@@ -19,15 +20,23 @@ namespace Eproject.Areas.Identity.Data
             : base(userManager, contextAccessor, claimsFactory, optionsAccessor, logger, schemes, confirmation)
         {
         }
+        public override async Task<SignInResult> PasswordSignInAsync(string userName, string password, bool isPersistent, bool lockoutOnFailure)
+        {
+            var user = await UserManager.FindByEmailAsync(userName);
+            if (user == null)
+            {
+                return SignInResult.Failed;
+            }
 
+            return await base.PasswordSignInAsync(user, password, isPersistent, lockoutOnFailure);
+        }
         public override async Task<bool> CanSignInAsync(TUser user)
         {
             // Check if the user's "IsApproved" property is true
-            if (user is EprojectUser appUser && !appUser.isApproved)
+            if (user is EprojectUser appUser && appUser.Status != UserStatus.Active)
             {
                 return false;
             }
-
             return await base.CanSignInAsync(user);
         }
     }

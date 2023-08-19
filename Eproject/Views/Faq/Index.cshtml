@@ -1,0 +1,111 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<!-- DataTable with Buttons -->
+<!-- DataTable with Buttons -->
+<div class="card">
+    <div class="card-datatable table-responsive pt-0">
+        <table class="datatables-basic table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>id</th>
+                    <th>Question</th>
+                    <th>Answer</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<!-- Modal to add new record -->
+<div class="offcanvas offcanvas-end" id="add-new-record">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="exampleModalLabel">New Record</h5>
+        <button type="button"
+                class="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body flex-grow-1">
+        <form class="add-new-record pt-0 row g-3" id="form-add-new-record" asp-action="Create" asp-controller="Faq">
+            <div class="col-sm-12">
+                <div class="input-group input-group-merge">
+                    <span id="basicFullname2" class="input-group-text">
+                        <i class="mdi mdi-account-outline"></i>
+                    </span>
+                    <div class="form-floating form-floating-outline">
+                        <input type="text"
+                               id="basicFullname"
+                               class="form-control dt-full-name"
+                               name="Question"
+                               placeholder="Question?"
+                               aria-label="John Doe"
+                               aria-describedby="basicFullname2" />
+                        <label for="basicFullname">Question</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="input-group input-group-merge">
+                    
+                    <div class="form-floating form-floating-outline mb-4">
+                        <textarea class="form-control h-px-100" name="Answer" id="answerTextArea" placeholder="Answer..." style="height: 42px;"></textarea>
+                        <label for="answerTextArea">Answer</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Submit</button>
+                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!--/ DataTable with Buttons -->
+
+<div class="modal fade" id="addNewCCModal" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered1 modal-simple modal-add-new-cc">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body p-md-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center mb-4">
+                    <h3 class="mb-2 pb-1">Edit Entry</h3>
+                </div>
+                <form id="addNewCCForm" class="row g-4 fv-plugins-bootstrap5 fv-plugins-framework"  asp-action="Update" asp-controller="Faq" novalidate="novalidate">
+                    <input type="hidden" id="faqItem" name="Id"/>
+                    <div class="col-12 fv-plugins-icon-container">
+                        <div class="input-group input-group-merge">
+                            <div class="form-floating form-floating-outline">
+                                <input id="editQuestion" name="Question" class="form-control" type="text" placeholder="Question?" aria-describedby="modalAddCard2">
+                                <label for="modalAddCard">Question</label>
+                            </div>
+                            
+                        </div>
+                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating form-floating-outline mb-4">
+                            <textarea class="form-control h-px-100" id="editAnswer" name="Answer" placeholder="Answer..."></textarea>
+                            <label for="exampleFormControlTextarea1">Answer</label>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light">Submit</button>
+                        <button type="reset" class="btn btn-outline-secondary btn-reset waves-effect" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                    </div>
+                    <input type="hidden">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
+
