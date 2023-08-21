@@ -118,9 +118,6 @@ namespace Eproject.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SurveyId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -137,8 +134,6 @@ namespace Eproject.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("SurveyId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -187,6 +182,21 @@ namespace Eproject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Surveys");
+                });
+
+            modelBuilder.Entity("Eproject.Models.SurveyEprojectUser", b =>
+                {
+                    b.Property<int>("SurveyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EprojectUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("SurveyId", "EprojectUserId");
+
+                    b.HasIndex("EprojectUserId");
+
+                    b.ToTable("SurveyEprojectUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -337,11 +347,21 @@ namespace Eproject.Migrations
                     b.Navigation("Survey");
                 });
 
-            modelBuilder.Entity("Eproject.Models.EprojectUser", b =>
+            modelBuilder.Entity("Eproject.Models.SurveyEprojectUser", b =>
                 {
+                    b.HasOne("Eproject.Models.EprojectUser", "EprojectUser")
+                        .WithMany("ParticipatedSurveys")
+                        .HasForeignKey("EprojectUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Eproject.Models.Survey", "Survey")
                         .WithMany("Participants")
-                        .HasForeignKey("SurveyId");
+                        .HasForeignKey("SurveyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EprojectUser");
 
                     b.Navigation("Survey");
                 });
@@ -395,6 +415,11 @@ namespace Eproject.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Eproject.Models.EprojectUser", b =>
+                {
+                    b.Navigation("ParticipatedSurveys");
                 });
 
             modelBuilder.Entity("Eproject.Models.Survey", b =>

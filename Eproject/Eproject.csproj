@@ -7,10 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\Index.cshtml" />
+    <Content Remove="Areas\Pages\Index.cshtml" />
+    <Content Remove="Areas\Pages\test.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="CoreAdmin" Version="2.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.9" />
@@ -23,15 +26,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Index.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Pages\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Pages\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Pages\test.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Pages\Index.cshtml" />
+    <None Include="Areas\Pages\Index.cshtml" />
+    <None Include="Areas\Pages\test.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\NewFolder\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Pages\test.cshtml" />
   </ItemGroup>
 
 </Project>

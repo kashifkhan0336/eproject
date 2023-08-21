@@ -18,7 +18,7 @@ namespace Eproject.Controllers
         private readonly UserManager<EprojectUser> _userManager;
         private readonly SignInManager<EprojectUser> _signInManager;
         private readonly IUserStore<EprojectUser> _userStore;
-        private readonly IUserEmailStore<EprojectUser> _emailStore;
+        private readonly IUserEmailStore<EprojectUser>? _emailStore;
         private readonly IEmailSender _emailSender;
 
 

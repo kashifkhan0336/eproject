@@ -5,7 +5,7 @@
 namespace Eproject.Migrations
 {
     /// <inheritdoc />
-    public partial class DefaultParticipants : Migration
+    public partial class Cascade : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

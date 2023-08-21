@@ -6,8 +6,9 @@
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
         public ICollection<AllowedRole> Allowed { get; set; } = null!;
-        public ICollection<EprojectUser>? Participants { get; set; } = new List<EprojectUser>();
+        public ICollection<SurveyEprojectUser> Participants { get; set; } = new List<SurveyEprojectUser>();
         //public ICollection<EprojectUser>? CompletedBy { get; set; }
         public string SurveyData { get; set; } = null!;
+
     }
 }

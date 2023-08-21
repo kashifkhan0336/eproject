@@ -36,7 +36,7 @@ public class EprojectUser : IdentityUser
 
     public UserStatus Status { get; set; } = UserStatus.Pending;
 
-    public Survey? Survey { get; set; }
+    public ICollection<SurveyEprojectUser> ParticipatedSurveys { get; set; } = new List<SurveyEprojectUser>();
 }
 
 public enum UserStatus

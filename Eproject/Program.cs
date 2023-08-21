@@ -29,11 +29,16 @@ namespace Eproject
             .AddEntityFrameworkStores<EprojectContext>();
 
             builder.Services.AddScoped<SignInManager<EprojectUser>, CustomSignInManager<EprojectUser>>();
-
+            builder.Services.AddAutoMapper(typeof(Program));
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
-
+            //builder.Services.AddControllers().AddJsonOptions(options =>
+            //{
+            //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+            //    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            //    options.JsonSerializerOptions.WriteIndented = true;
+            //});
             var app = builder.Build();
             app.MapDefaultControllerRoute();
 
@@ -51,7 +56,7 @@ namespace Eproject
 
             app.UseAuthentication(); // UseAuthentication before UseAuthorization
             app.UseAuthorization();
-
+            app.MapControllers();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

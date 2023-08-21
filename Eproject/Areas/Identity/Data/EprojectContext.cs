@@ -10,6 +10,7 @@ public class EprojectContext : IdentityDbContext<EprojectUser>
     public DbSet<FaqEntry> FaqEntries { get; set; }
     public DbSet<Survey> Surveys { get; set; }
     public DbSet<AllowedRole> AllowedRoles { get; set; }
+    public DbSet<SurveyEprojectUser> SurveyEprojectUsers { get; set; }
     public EprojectContext(DbContextOptions<EprojectContext> options)
         : base(options)
     {
@@ -18,8 +19,27 @@ public class EprojectContext : IdentityDbContext<EprojectUser>
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-        // Customize the ASP.NET Identity model and override the defaults if needed.
-        // For example, you can rename the ASP.NET Identity table names and more.
-        // Add your customizations after calling base.OnModelCreating(builder);
+
+        builder.Entity<SurveyEprojectUser>()
+            .HasKey(seu => new { seu.SurveyId, seu.EprojectUserId });
+
+        builder.Entity<SurveyEprojectUser>()
+            .HasOne(seu => seu.Survey)
+            .WithMany(s => s.Participants)
+            .HasForeignKey(seu => seu.SurveyId)
+            .OnDelete(DeleteBehavior.Cascade); // Apply cascade delete
+
+        builder.Entity<SurveyEprojectUser>()
+            .HasOne(seu => seu.EprojectUser)
+            .WithMany(u => u.ParticipatedSurveys)
+            .HasForeignKey(seu => seu.EprojectUserId);
+
+        builder.Entity<Survey>()
+            .HasMany(s => s.Allowed)
+            .WithOne(ar => ar.Survey) // Explicitly specify the navigation property
+            .HasForeignKey(ar => ar.SurveyId) // Explicitly specify the foreign key
+            .OnDelete(DeleteBehavior.Cascade); // Apply cascade delete
     }
+    // Add your customizations after calling base.OnModelCreating(builder);
 }
+
