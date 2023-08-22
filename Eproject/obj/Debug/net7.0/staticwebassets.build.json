@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DwzsAyjaHpZRdmYAtqPQ5n4MgJPUJcsC69ZlaIzDDbc=",
+  "Hash": "/5zmtNZvYE57Xqpx3zF9Ir/YBnyRgEjEMMjo9CMwUFM=",
   "Source": "Eproject",
   "BasePath": "_content/Eproject",
   "Mode": "Default",
@@ -8039,6 +8039,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\js\\pages-profile.js"
+    },
+    {
+      "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\survey-list.js",
+      "SourceId": "Eproject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\",
+      "BasePath": "_content/Eproject",
+      "RelativePath": "assets/js/survey-list.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\survey-list.js"
     },
     {
       "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\tables-datatables-advanced.js",

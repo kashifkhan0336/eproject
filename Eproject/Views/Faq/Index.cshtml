@@ -106,6 +106,41 @@
     </div>
 </div>
 
-<script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#addNewCCModal').on('show.bs.modal', function (event) {
+                // This function will be executed when the modal is about to be shown
+                // You can add your JavaScript code here
+                console.log('Modal is opening');
+                console.log($(event.relatedTarget).data('item-id'));
+                $("#faqItem").val($(event.relatedTarget).data('item-id'))
+                $.ajax({
+                    url: '/faq/json',
+                    // Example API endpoint
+                    method: 'GET',
+                    success: function (data) {
+                        var idToQA = data.data.reduce(function (acc, item) {
+                            acc[item.id] = {
+                                question: item.question,
+                                answer: item.answer
+                            };
+                            return acc;
+                        }, {});
+                        // Update the result div with the fetched data
+                        let obj = idToQA[$(event.relatedTarget).data('item-id')]
+                        $('#editQuestion').val(obj['question']);
+                        $("#editAnswer").val(obj['answer']);
+                    },
+                    error: function () {
+                        // Handle errors
+                        console.log("err")
+                    }
+                });
+                // For example, you can focus on an input field when the modal is opened
 
+            });
+
+        })
+    </script>
+}

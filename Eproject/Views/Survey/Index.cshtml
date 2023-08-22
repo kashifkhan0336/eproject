@@ -108,15 +108,14 @@
             <thead class="table-light">
             <tr>
                 <th></th>
-                <th></th>
+                <th>Id</th>
                 <th>Name</th>
-                <th>Role</th>
-                <th>Specification</th>
-                <th>Roll Number</th>
-                <th>Class</th>
-                <th>Section</th>
-                <th>Admission Date</th>
-                <th>Status</th>
+                <th>Description</th>
+                <th>IsActive</th>
+                <th>Allowed</th>
+                <th>Participants</th>
+                <th>Completions</th>
+                <th>SurveyData</th>
 
                 <th>Actions</th>
             </tr>
@@ -229,41 +228,6 @@
     </div>
 </div>
 @section Scripts {
-    <script src="../../assets/js/app-user-list.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#addNewCCModal').on('show.bs.modal', function (event) {
-                // This function will be executed when the modal is about to be shown
-                // You can add your JavaScript code here
-                console.log('Modal is opening');
-                console.log($(event.relatedTarget).data('item-id'));
-                $("#faqItem").val($(event.relatedTarget).data('item-id'))
-                $.ajax({
-                    url: '/faq/json',
-                    // Example API endpoint
-                    method: 'GET',
-                    success: function (data) {
-                        var idToQA = data.data.reduce(function (acc, item) {
-                            acc[item.id] = {
-                                question: item.question,
-                                answer: item.answer
-                            };
-                            return acc;
-                        }, {});
-                        // Update the result div with the fetched data
-                        let obj = idToQA[$(event.relatedTarget).data('item-id')]
-                        $('#editQuestion').val(obj['question']);
-                        $("#editAnswer").val(obj['answer']);
-                    },
-                    error: function () {
-                        // Handle errors
-                        console.log("err")
-                    }
-                });
-                // For example, you can focus on an input field when the modal is opened
-
-            });
-
-        })
-    </script>
+    <script src="../../assets/js/survey-list.js"></script>
+    
 }

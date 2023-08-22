@@ -72,8 +72,8 @@ namespace Eproject.Controllers
 
             var allowedRoles = validRoles ?? new List<AllowedRoleDto>
             {
-                new AllowedRoleDto { RoleName = "Student" },
-                new AllowedRoleDto { RoleName = "Faculty" }
+                new() { RoleName = "Student" },
+                new() { RoleName = "Faculty" }
             };
 
             var newSurvey = new Survey
@@ -93,9 +93,9 @@ namespace Eproject.Controllers
 
         }
         [Authorize]
-        public async Task<string> Index()
+        public async Task<IActionResult> Index()
         {
-            return "under development";
+            return View();
 
         }
     }

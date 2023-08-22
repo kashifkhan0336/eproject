@@ -9,6 +9,7 @@
   <ItemGroup>
     <Content Remove="Areas\Pages\Index.cshtml" />
     <Content Remove="Areas\Pages\test.cshtml" />
+    <Content Remove="Views\Shared\NotFound.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +42,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\NewFolder\" />
+    <Folder Include="Views\NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1497,6 +1497,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\pages-profile.js"
     },
     {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\survey-list.js",
+      "PackagePath": "staticwebassets\\assets\\js\\survey-list.js"
+    },
+    {
       "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\tables-datatables-advanced.js",
       "PackagePath": "staticwebassets\\assets\\js\\tables-datatables-advanced.js"
     },

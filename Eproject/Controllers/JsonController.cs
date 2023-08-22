@@ -70,6 +70,9 @@ namespace Eproject.Controllers
         {
             var surveys = await _context.Surveys
                 .Include(s => s.Allowed)
+                .Include(s => s.Participants)
+                .Include(s => s.Completions)
+                
                 .ToListAsync();
 
             var jsonSettings = new JsonSerializerSettings
@@ -77,7 +80,7 @@ namespace Eproject.Controllers
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
 
-            var jsonSurveys = JsonConvert.SerializeObject(surveys, Formatting.None, jsonSettings);
+            var jsonSurveys = JsonConvert.SerializeObject(new { data = surveys}, Formatting.None, jsonSettings);
 
             return Content(jsonSurveys, "application/json");
         }
