@@ -11,6 +11,7 @@ public class EprojectContext : IdentityDbContext<EprojectUser>
     public DbSet<Survey> Surveys { get; set; }
     public DbSet<AllowedRole> AllowedRoles { get; set; }
     public DbSet<SurveyEprojectUser> SurveyEprojectUsers { get; set; }
+    public DbSet<SurveyCompletion> SurveyCompletions { get; set; }
     public EprojectContext(DbContextOptions<EprojectContext> options)
         : base(options)
     {
@@ -39,6 +40,19 @@ public class EprojectContext : IdentityDbContext<EprojectUser>
             .WithOne(ar => ar.Survey) // Explicitly specify the navigation property
             .HasForeignKey(ar => ar.SurveyId) // Explicitly specify the foreign key
             .OnDelete(DeleteBehavior.Cascade); // Apply cascade delete
+
+        builder.Entity<SurveyCompletion>()
+            .HasKey(sc => new { sc.Id });
+
+        builder.Entity<SurveyCompletion>()
+            .HasOne(sc => sc.Survey)
+            .WithMany(s => s.Completions)
+            .HasForeignKey(sc => sc.SurveyId);
+
+        builder.Entity<SurveyCompletion>()
+            .HasOne(sc => sc.User)
+            .WithMany(u => u.CompletedSurveys)
+            .HasForeignKey(sc => sc.EprojectUserId);
     }
     // Add your customizations after calling base.OnModelCreating(builder);
 }

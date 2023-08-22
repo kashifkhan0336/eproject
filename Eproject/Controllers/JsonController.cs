@@ -21,9 +21,9 @@ namespace Eproject.Controllers
 
             _userManager = userManager;
         }
-        public IActionResult Index()
+        public string Index()
         {
-            return View();
+            return "Wokr!";
         }
         //Get all surveys a specific participant has participated
         public async Task<IActionResult> Survey(string participantId)
@@ -41,6 +41,7 @@ namespace Eproject.Controllers
 
             return Content(jsonSurveys, "application/json");
         }
+        [HttpGet]
         //Get all participants of an specific survey
         public async Task<IActionResult> Participants(int surveyId)
         {
@@ -50,7 +51,7 @@ namespace Eproject.Controllers
                 .FirstOrDefault(s => s.Id == surveyId);
 
             if (survey == null)
-                return NotFound();
+                return BadRequest();
 
             var participants = survey.Participants;
 

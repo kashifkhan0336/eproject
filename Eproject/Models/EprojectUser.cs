@@ -35,6 +35,7 @@ public class EprojectUser : IdentityUser
     public DateTime AdmissionDate { get; set; } = DateTime.Now;
 
     public UserStatus Status { get; set; } = UserStatus.Pending;
+    public ICollection<SurveyCompletion> CompletedSurveys { get; set; } = new List<SurveyCompletion>();
 
     public ICollection<SurveyEprojectUser> ParticipatedSurveys { get; set; } = new List<SurveyEprojectUser>();
 }
