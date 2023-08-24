@@ -11,16 +11,16 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 
-namespace Eproject.Controllers
+namespace Eproject.Areas.Controllers.Admin
 {
-    [Authorize(Roles = "Admin")]
+    [Route("Admin/Survey")]
     public class SurveyController : Controller
     {
-        private readonly ILogger<FaqController> _logger;
+        private readonly ILogger<SurveyController> _logger;
         private readonly EprojectContext _context;
         private readonly UserManager<EprojectUser> _userManager;
 
-        public SurveyController(EprojectContext context, ILogger<FaqController> logger, IMapper mapper, UserManager<EprojectUser> userManager)
+        public SurveyController(EprojectContext context, ILogger<SurveyController> logger, IMapper mapper, UserManager<EprojectUser> userManager)
         {
             _context = context;
             _logger = logger;
@@ -29,28 +29,29 @@ namespace Eproject.Controllers
         }
 
         //Delete an entire survey
-        public async Task<string> Delete(int Id)
+        [HttpPost]
+        public async Task<IActionResult> Delete([FromBody] DeleteSurveyDto surveyDelete)
         {
-            var survey = await _context.Surveys
-                .Include(s => s.Participants)
-                .Include(s => s.Allowed)
-                .FirstOrDefaultAsync(s => s.Id == Id);
 
-            if (survey == null)
+            if (!ModelState.IsValid)
             {
-                return "No Survey";
+                var errors = ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage));
+                return BadRequest(errors);
             }
 
-            // Remove participants and allowed roles
-
+            var survey = await _context.Surveys.FindAsync(surveyDelete.Id);
+            if (survey == null)
+            {
+                return NotFound("Survey not found!");
+            }
             // Delete the survey
             _context.Surveys.Remove(survey);
 
             await _context.SaveChangesAsync();
 
-            return "Survey deleted successfully";
+            return Ok("Survey deleted successfully");
         }
-
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
@@ -93,6 +94,7 @@ namespace Eproject.Controllers
 
         }
         [Authorize]
+
         public async Task<IActionResult> Index()
         {
             return View();

@@ -1,4 +1,5 @@
-﻿using Eproject.Data;
+﻿using Eproject.Areas.Controllers.Admin;
+using Eproject.Data;
 using Eproject.Models;
 using Eproject.Models.DTO;
 using Microsoft.AspNetCore.Authorization;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace Eproject.Controllers
+namespace Eproject.Areas.Controllers
 {
     public class ParticipantController : Controller
     {

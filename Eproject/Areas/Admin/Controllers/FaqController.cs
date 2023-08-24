@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using System.Data;
-namespace Eproject.Controllers
+
+namespace Eproject.Areas.Controllers.Admin
 {
     public class Data
     {
@@ -24,7 +25,7 @@ namespace Eproject.Controllers
     {
         private readonly ILogger<FaqController> _logger;
         private readonly EprojectContext _context;
-        public FaqController(EprojectContext context, ILogger<FaqController> logger ) 
+        public FaqController(EprojectContext context, ILogger<FaqController> logger)
         {
             _context = context;
             _logger = logger;
@@ -79,8 +80,8 @@ namespace Eproject.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("Question,Answer")] Data data)
         {
-            
-            var faq = new FaqEntry() 
+
+            var faq = new FaqEntry()
             {
                 Question = data.Question,
                 Answer = data.Answer

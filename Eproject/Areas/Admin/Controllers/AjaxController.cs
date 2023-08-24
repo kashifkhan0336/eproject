@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 
-namespace Eproject.Controllers
+namespace Eproject.Areas.Controllers.Admin
 {
     public class AjaxController : Controller
     {

@@ -1,4 +1,5 @@
 ﻿using Eproject.Areas.Identity.Pages.Account;
+using Eproject.Controllers;
 using Eproject.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -8,9 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using static Eproject.Controllers.HomeController;
 
-namespace Eproject.Controllers
+namespace Eproject.Areas.Controllers.Admin
 {
     [Authorize(Roles = "Admin")]
+
     public class UsersController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -23,8 +25,8 @@ namespace Eproject.Controllers
 
 
         public UsersController(
-            ILogger<HomeController> logger, 
-            RoleManager<IdentityRole> roleManager, 
+            ILogger<HomeController> logger,
+            RoleManager<IdentityRole> roleManager,
             UserManager<EprojectUser> userManager,
             IUserStore<EprojectUser> userStore,
             SignInManager<EprojectUser> signInManager,
@@ -41,6 +43,10 @@ namespace Eproject.Controllers
             _emailSender = emailSender;
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
         private EprojectUser CreateUser()
         {
             try
@@ -53,6 +59,41 @@ namespace Eproject.Controllers
                     $"Ensure that '{nameof(EprojectUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
+        }
+
+        public async Task<IActionResult> Manage(string? UserId)
+        {
+            _logger.Log(LogLevel.Information, UserId);
+            if (UserId == null)
+            {
+                return View("NotFound");
+            }
+            var user = await _userManager.FindByIdAsync(UserId);
+
+            if (user == null)
+            {
+                return View("NotFound");
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var allRoles = await _roleManager.Roles.Select(role => role.Name).ToListAsync();
+
+            var userView = new UserViewModel
+            {
+                Email = user.Email,
+                Full_name = user.Name,
+                Username = user.UserName.Split("@")[0],
+                Roll_number = user.Code,
+                Section = user.Section,
+                Specification = user.Specification,
+                UserId = user.Id,
+                Class = user.Class,
+                Role = string.Join("", roles),
+                Status = user.Status,
+                Admission_date = user.AdmissionDate,
+                AllRoles = allRoles
+            };
+            return View("~/Views/Admin/Manage/Index.cshtml", userView);
         }
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] RegisterModel.InputModel model)
@@ -73,11 +114,6 @@ namespace Eproject.Controllers
 
             // Return an error response
             return BadRequest();
-        }
-
-        public IActionResult Index(string userId)
-        {
-            return View();
         }
 
         [HttpPost]
@@ -108,42 +144,9 @@ namespace Eproject.Controllers
             }
         }
 
-        public async Task<IActionResult> Manage(String UserId)
-        {
-            _logger.Log(LogLevel.Information, UserId);
-            if(UserId == null)
-            {
-                return View("NotFound");
-            }
-            var user = await _userManager.FindByIdAsync(UserId);
 
-            if (user == null)
-            {
-                return View("NotFound");
-            }
 
-            var roles = await _userManager.GetRolesAsync(user);
-            var allRoles = await _roleManager.Roles.Select(role => role.Name).ToListAsync();
-
-            var userView = new UserViewModel
-            {
-                Email = user.Email,
-                Full_name = user.Name,
-                Username = user.UserName.Split("@")[0],
-                Roll_number = user.Code,
-                Section = user.Section,
-                Specification = user.Specification,
-                UserId = user.Id,
-                Class = user.Class,
-                Role = String.Join("", roles),
-                Status = user.Status,
-                Admission_date = user.AdmissionDate,
-                AllRoles = allRoles
-            };
-            return View(userView);
-        }
-        [HttpPost]
-        public async Task<IActionResult> UpdateData(UserUpdateRole userView)
+        public async Task<IActionResult> Update(UserUpdateRole userView)
         {
 
             var user = await _userManager.FindByIdAsync(userView.UserId);
@@ -174,7 +177,7 @@ namespace Eproject.Controllers
                 throw new Exception("User update failed.");
             }
 
-            return RedirectToAction("Manage", new { userId = userView.UserId });
+            return RedirectToAction("Manage", "Users", new { area = "Admin", userId = userView.UserId });
         }
         [HttpGet]
         public async Task<IActionResult> Json()
@@ -196,7 +199,7 @@ namespace Eproject.Controllers
                     Specification = user.Specification,
                     UserId = user.Id,
                     Class = user.Class,
-                    Role = String.Join("", roles),
+                    Role = string.Join("", roles),
                     Status = user.Status,
                     Admission_date = user.AdmissionDate,
                     AllRoles = allRoles
@@ -207,7 +210,7 @@ namespace Eproject.Controllers
             var jsonData = new { data = usersWithRoles1 };
             return Json(jsonData);
         }
-        
+
 
     }
 }

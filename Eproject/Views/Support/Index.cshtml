@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Support Page";
+    Layout = "_LayoutDefault";
+}
+<div class="min-h-[90vh] flex items-center justify-center px-2">
+    <div
+        class="w-full max-w-4xl rounded flex flex-col lg:flex-row gap-4 shadow-xl"
+    >
+        <div class="w-full p-8 lg:flex-[2] mt-4 sm:mt-0 text-lg bg-primary">
+            <h2 class="text-3xl font-semibold mb-4">Contact Details</h2>
+            <p class="mb-2"><strong>Email:</strong> contact@example.com</p>
+            <p class="mb-2"><strong>Phone:</strong> +1 (123) 456-7890</p>
+            <p class="mb-2">
+                <strong>Address:</strong> 123 Main Street, City, Country
+            </p>
+        </div>
+        <form class="w-full sm:w-2/3 p-8 mx-auto lg:flex-[4]">
+            <h1 class="text-3xl font-semibold mb-6 text-center lg:text-left">Send a Message</h1>
+            <div class="form-control w-full max-w-2xl mb-3">
+                <input
+                    type="text"
+                    placeholder="Email Address"
+                    class="input input-bordered w-full shadow-lg"
+                />
+                <p id="emailError" class="text-error mt-1"></p>
+            </div>
+            <div class="form-control w-full max-w-2xl mb-3">
+                <input
+                    type="email"
+                    placeholder="Email Address"
+                    class="input input-bordered w-full shadow-lg"
+                />
+                <p id="emailError" class="text-error mt-1"></p>
+            </div>
+            <div class="form-control w-full max-w-2xl mb-3">
+                <textarea
+              class="textarea textarea-bordered w-full h-56 shadow-lg"
+              placeholder="Message"
+            ></textarea>
+            </div>
+            <div class="flex items-center justify-center">
+                <button type="submit" class="btn btn-primary shadow-lg">Send Message</button>
+            </div>
+        </form>
+    </div>
+</div>

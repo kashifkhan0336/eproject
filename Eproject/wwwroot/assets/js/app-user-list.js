@@ -21,7 +21,7 @@ $(function () {
   // Variable declaration for table
   var dt_user_table = $('.datatables-users'),
     select2 = $('.select2'),
-    userView = 'users/manage',
+    userView = '/admin/users/manage',
     statusObj = {
       2: { title: 'Pending', class: 'bg-label-warning' },
       0: { title: 'Active', class: 'bg-label-success' },

@@ -29,10 +29,10 @@ namespace Eproject.Controllers
 
 
 
-        public async Task<IActionResult> Privacy()
+        public async Task<IActionResult> Support()
         {
-            var roles = await _roleManager.Roles.ToListAsync();
-            return View(roles);
+
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

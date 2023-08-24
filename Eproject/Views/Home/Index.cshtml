@@ -2,8 +2,113 @@
     ViewData["Title"] = "Home Page";
     Layout = "_LayoutDefault";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="max-h-[800px] bg-cover bg-center h-screen relative"
+         style="background-image: url('../../assets/img/home/header-img.jpg')">
+    <div class="absolute inset-0 bg-black opacity-30"></div>
+    <div class="container mx-auto flex items-center justify-center h-full relative z-10">
+        <div class="text-center">
+            <h1 class="text-white text-4xl md:text-6xl font-bold mb-4">
+                Environmental Survey
+            </h1>
+            <p class="text-white text-lg md:text-2xl mb-8">
+                Join our community and help us gather data to protect our planet
+            </p>
+            <a href="#" class="btn btn-primary">Take the Survey</a>
+        </div>
+    </div>
+</section>
+<section class="py-12">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">
+            Why Take the Survey?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center shadow-lg p-2">
+                <img src="../../assets/img/home/make-a-difference.jpg"
+                     alt="Image"
+                     class="w-32 h-32 mx-auto rounded-full mb-4" />
+                <h3 class="text-xl font-bold mb-2">Make a Difference</h3>
+                <p class="text-lg">
+                    Your input helps us gather valuable data to protect our
+                    environment
+                </p>
+            </div>
+            <div class="text-center shadow-lg p-2">
+                <img src="../../assets/img/home/join.png"
+                     alt="Image"
+                     class="w-32 h-32 mx-auto rounded-full mb-4" />
+                <h3 class="text-xl font-bold mb-2">Join a Community</h3>
+                <p class="text-lg">
+                    Connect with like-minded individuals who care about our planet
+                </p>
+            </div>
+            <div class="text-center shadow-lg p-2">
+                <img src="../../assets/img/home/grow.jpg"
+                     alt="Image"
+                     class="w-32 h-32 mx-auto rounded-full mb-4" />
+                <h3 class="text-xl font-bold mb-2">Learn and Grow</h3>
+                <p class="text-lg">
+                    Discover new ways to live sustainably and reduce your
+                    environmental impact
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="divider"></div>
+<section class="py-12">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">
+            How It Works
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center shadow-lg p-2">
+                <img src="../../assets/img/home/signup.png"
+                     alt="Image"
+                     class="w-32 h-32 mx-auto rounded-full mb-4" />
+                <h3 class="text-xl font-bold mb-2">Step 1: Sign Up</h3>
+                <p class="text-lg">
+                    Create an account and join our community of environmental
+                    advocates
+                </p>
+            </div>
+            <div class="text-center shadow-lg p-2">
+                <img src="../../assets/img/home/survey.jpg"
+                     alt="Image"
+                     class="w-32 h-32 mx-auto rounded-full mb-4" />
+                <h3 class="text-xl font-bold mb-2">Step 2: Take the Survey</h3>
+                <p class="text-lg">
+                    Answer questions about your lifestyle and environmental impact
+                </p>
+            </div>
+            <div class="text-center shadow-lg p-2">
+                <img src="../../assets/img/home/result.jpg"
+                     alt="Image"
+                     class="w-32 h-32 mx-auto rounded-full mb-4" />
+                <h3 class="text-xl font-bold mb-2">Step 3: Get Results</h3>
+                <p class="text-lg">
+                    See how your choices affect the environment and get personalized
+                    tips for improvement
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="divider"></div>
+<section class="py-12">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">
+            Our Mission
+        </h2>
+        <p class="text-lg md:text-xl text-center max-w-prose mx-auto mb-8">
+            Our mission is to gather data on individual environmental impact and
+            use it to drive positive change. By taking our survey, you are
+            helping us build a better understanding of how our daily choices
+            affect the world around us. Together, we can make a difference and
+            protect our planet for future generations.
+        </p>
+        <div class="flex justify-center">
+            <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+    </div>
+</section>

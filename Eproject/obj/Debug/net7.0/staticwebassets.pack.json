@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\assets\\css\\demo.css"
     },
     {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\css\\main-69e02804.css",
+      "PackagePath": "staticwebassets\\assets\\css\\main-69e02804.css"
+    },
+    {
       "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\avatars\\1.png",
       "PackagePath": "staticwebassets\\assets\\img\\avatars\\1.png"
     },
@@ -275,6 +279,34 @@
     {
       "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\favicon\\favicon.ico",
       "PackagePath": "staticwebassets\\assets\\img\\favicon\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\home\\grow.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\home\\grow.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\home\\header-img.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\home\\header-img.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\home\\join.png",
+      "PackagePath": "staticwebassets\\assets\\img\\home\\join.png"
+    },
+    {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\home\\make-a-difference.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\home\\make-a-difference.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\home\\result.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\home\\result.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\home\\signup.png",
+      "PackagePath": "staticwebassets\\assets\\img\\home\\signup.png"
+    },
+    {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\home\\survey.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\home\\survey.jpg"
     },
     {
       "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\icons\\brands\\asana.png",
@@ -1349,6 +1381,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\extended-ui-treeview.js"
     },
     {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\faq-list.js",
+      "PackagePath": "staticwebassets\\assets\\js\\faq-list.js"
+    },
+    {
       "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\form-basic-inputs.js",
       "PackagePath": "staticwebassets\\assets\\js\\form-basic-inputs.js"
     },
@@ -1403,6 +1439,18 @@
     {
       "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\forms-typeahead.js",
       "PackagePath": "staticwebassets\\assets\\js\\forms-typeahead.js"
+    },
+    {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\index-3a16d620.js",
+      "PackagePath": "staticwebassets\\assets\\js\\index-3a16d620.js"
+    },
+    {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\login-c1256bef.js",
+      "PackagePath": "staticwebassets\\assets\\js\\login-c1256bef.js"
+    },
+    {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\main-551a2c86.js",
+      "PackagePath": "staticwebassets\\assets\\js\\main-551a2c86.js"
     },
     {
       "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\main.js",
@@ -1495,6 +1543,10 @@
     {
       "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\pages-profile.js",
       "PackagePath": "staticwebassets\\assets\\js\\pages-profile.js"
+    },
+    {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\register-7f902d8a.js",
+      "PackagePath": "staticwebassets\\assets\\js\\register-7f902d8a.js"
     },
     {
       "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\survey-list.js",

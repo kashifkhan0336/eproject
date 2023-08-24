@@ -177,7 +177,7 @@
                         <h3 class="mb-2">Edit User Information</h3>
                         <p class="pt-1">Updating user details will receive a privacy audit.</p>
                     </div>
-                    <form id="editUserForm" class="row g-4" asp-controller="Users" asp-action="UpdateData">
+                    <form id="editUserForm" class="row g-4" asp-controller="Users" asp-action="Update" asp-area="Admin">
                         <input type="hidden" name="UserId" value="@Model.UserId" />
                         <div class="col-12">
                             <div class="form-floating form-floating-outline">

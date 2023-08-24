@@ -4,48 +4,119 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Eproject</title>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Eproject.styles.css" asp-append-version="true" />
+    <script type="module" crossorigin src="../../assets/js/main-551a2c86.js"></script>
+    <link rel="stylesheet" href="../../assets/css/main-69e02804.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Eproject</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    <header class="shadow-lg">
+        <div class="navbar bg-base-100 w-full lg:container mx-auto">
+            <div class="navbar-start">
+                <div class="dropdown">
+                    <label tabindex="0" class="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="h-5 w-5"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
+                    </label>
+                    <ul tabindex="0"
+                        class="menu menu-sm dropdown-content mt-3 z-30 p-2 shadow-lg bg-base-100 rounded-box w-52">
+                        <li class="mb-2"><a href="/index.html">Home</a></li>
+                        <li class="mb-2"><a href="./pages/faq.html">FAQ</a></li>
+                        <li class="mb-2"><a asp-action="Support" asp-controller="Home" >Support</a></li>
+                        <li class="mb-2">
+                            <a href="./pages/surveys.html">Survey Board</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
-                        </li>
+                        <li class="mb-2"><a>Profile Edit</a></li>
+                        <div class="gap-2 flex sm:hidden">
+                            <a class="btn btn-primary btn-outline"
+                               href="./pages/register.html">Register</a>
+                            <a class="btn btn-primary" href="./pages/login.html">Login</a>
+                        </div>
                     </ul>
                 </div>
-                <div>
-                    <partial name="_LoginPartial.cshtml" />
-                </div>
+                <a class="btn btn-ghost normal-case text-xl" href="/index.html">Enviromental Surveys</a>
             </div>
-        </nav>
+            <div class="navbar-center hidden lg:flex">
+                <ul class="menu menu-horizontal px-1">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="./pages/faq.html">FAQ</a></li>
+                    <li><a asp-action="Support" asp-controller="Home">Support</a></li>
+                    <li><a href="./pages/surveys.html">Survey Board</a></li>
+                    <li><a href="./pages/createPost.html">Effective Participation</a></li>
+                    <li><a href="./pages/seminars.html">Seminars</a></li>
+                    <li><a href="./pages/manage-profile.html">Profile Edit</a></li>
+                </ul>
+            </div>
+            <div class="navbar-end gap-2 hidden sm:flex">
+                <button class="btn btn-primary" id="modeBtn">mode</button>
+                <a class="btn btn-primary btn-outline" href="./pages/register.html">Register</a>
+                <a class="btn btn-primary" href="./pages/login.html">Login</a>
+            </div>
+        </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+        <main>
             @RenderBody()
         </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Eproject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+<footer class="bg-primary py-12">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-between items-center mb-8">
+            <a href="#" class="text-primary-content text-xl font-bold"
+            >Environmental Survey</a
+            >
+            <nav>
+                <ul class="flex space-x-4">
+                    <li>
+                        <a
+                            class="text-primary-content hover:text-gray-300"
+                            href="./index.html"
+                        >Home</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            class="text-primary-content hover:text-gray-300"
+                            href="./pages/faq.html"
+                        >FAQ</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            class="text-primary-content hover:text-gray-300"
+                            href="./pages/support.html"
+                        >Support</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            class="text-primary-content hover:text-gray-300"
+                            href="./pages/surveys.html"
+                        >Survey Board</a
+                        >
+                    </li>
+                    <li>
+                        <a class="text-primary-content hover:text-gray-300"
+                        >Profile Edit</a
+                        >
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </footer>
+        <p class="text-primary-content text-sm">
+            © 2023 Environmental Survey. All rights reserved.
+        </p>
+        <p class="text-primary-content text-sm">
+            Created By M Kashif Khan, M Maaz Ahmed
+        </p>
+    </div>
+</footer>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

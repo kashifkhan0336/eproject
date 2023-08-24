@@ -58,6 +58,16 @@ namespace Eproject
             app.UseAuthorization();
             app.MapControllers();
             app.MapControllerRoute(
+                name: "admin",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}",
+                defaults: new { area = "Admin" });
+
+            app.MapControllerRoute(
+                name: "user",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}",
+                defaults: new { area = "User" });
+
+            app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();

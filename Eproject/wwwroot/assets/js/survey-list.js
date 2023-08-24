@@ -45,12 +45,10 @@ $(function () {
                 { data: ''},
                 { data: 'Id' },
                 { data: 'Name' },
-                { data: 'Description' },
                 { data: 'IsActive' },
                 { data: 'Allowed' },
                 { data: 'Participants' },
                 { data: 'Completions' },
-                { data: 'SurveyData' },
 
                 { data: 'action' }
             ],
@@ -79,13 +77,7 @@ $(function () {
                     }
                 },
                 {
-                    targets: 3, // Description column
-                    render: function (data, type, row) {
-                        return '<span>' + data + '</span>';
-                    }
-                },
-                {
-                    targets: 4, // IsActive column
+                    targets: 3, // IsActive column
                     render: function (data, type, row) {
                         return data ? '<input type="checkbox" checked disabled>' : '<input type="checkbox" disabled>';
                     }
@@ -98,7 +90,7 @@ $(function () {
                 //    }
                 //},
                 {
-                    targets: 5, // Allowed column
+                    targets: 4, // Allowed column
                     render: function (data, type, row) {
                         var roles = []
                         var roleBadgeObj = {
@@ -113,22 +105,15 @@ $(function () {
                     }
                 },
                 {
-                    targets: 6, // Participants column
+                    targets: 5, // Participants column
                     render: function (data, type, row) {
                         return data.length;
                     }
                 },
                 {
-                    targets: 7, // Completions column
+                    targets: 6, // Completions column
                     render: function (data, type, row) {
                         return data.length;
-                    }
-                },
-                {
-                    targets: 8, // SurveyData column
-                    render: function (data, type, row) {
-                        // Customize the rendering for this column
-                        return '<pre>' + data + '</pre>'; // Render JSON data in a formatted way
                     }
                 },
 
@@ -147,7 +132,7 @@ $(function () {
                             userView +
                             '" class="dropdown-item"><i class="mdi mdi-eye-outline me-2"></i><span>View</span></a>' +
                             '<a href="javascript:;" class="dropdown-item"><i class="mdi mdi-pencil-outline me-2"></i><span>Edit</span></a>' +
-                            '<a href="javascript:;" class="dropdown-item delete-record"><i class="mdi mdi-delete-outline me-2"></i><span>Delete</span></a>' +
+                            `<a href="javascript:;" class="dropdown-item delete-record" data-item-id="${full["Id"]}" ><i class="mdi mdi-delete-outline me-2" ></i><span>Delete</span></a>` +
                             '</div>' +
                             '</div>'
                         );
@@ -435,5 +420,28 @@ $(function () {
     // Delete Record
     $('.datatables-users tbody').on('click', '.delete-record', function () {
         dt_user.row($(this).parents('tr')).remove().draw();
+        console.log($(this).data("item-id"))
+        var dataToSend = {
+            Id: $(this).data("item-id")
+        };
+        $.ajax({
+            type: "POST",
+            url: "/survey/Delete", // Replace "ControllerName" with the actual controller name
+            data: JSON.stringify(dataToSend),
+            contentType: "application/json", // Set the content type to JSON
+            success: function (response) {
+                if (response === "Survey deleted successfully") {
+                    console.log("Survey deleted successfully");
+                    // Optionally, you can update the UI or perform other actions here
+                } else if (response === "No Survey") {
+                    console.log("No survey found with the provided ID");
+                } else {
+                    console.log("An error occurred");
+                }
+            },
+            error: function () {
+                alert("An error occurred while processing the request");
+            }
+        });
     });
 });
