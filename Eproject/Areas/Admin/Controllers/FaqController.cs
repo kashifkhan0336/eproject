@@ -21,6 +21,7 @@ namespace Eproject.Areas.Controllers.Admin
     {
         public int Id { get; set; }
     }
+    [Area("Admin")]
     public class FaqController : Controller
     {
         private readonly ILogger<FaqController> _logger;

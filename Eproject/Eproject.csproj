@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Admin\Survey\Create\" />
+    <Folder Include="Areas\Admin\Views\Survey\Create\" />
     <Folder Include="Views\NewFolder\" />
   </ItemGroup>
 

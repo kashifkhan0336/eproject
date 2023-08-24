@@ -4,6 +4,7 @@ using Eproject.Data;
 using Eproject.Areas.Identity.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Eproject.Models;
+using Microsoft.AspNetCore.Builder;
 
 namespace Eproject
 {
@@ -40,7 +41,7 @@ namespace Eproject
             //    options.JsonSerializerOptions.WriteIndented = true;
             //});
             var app = builder.Build();
-            app.MapDefaultControllerRoute();
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -56,22 +57,18 @@ namespace Eproject
 
             app.UseAuthentication(); // UseAuthentication before UseAuthorization
             app.UseAuthorization();
-            app.MapControllers();
-            app.MapControllerRoute(
-                name: "admin",
-                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}",
-                defaults: new { area = "Admin" });
 
-            app.MapControllerRoute(
-                name: "user",
-                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}",
-                defaults: new { area = "User" });
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.MapAreaControllerRoute(
+                    name: "admin",
+                    areaName: "admin",
+                    pattern: "admin/{controller=Home}/{action=Index}"); //This is Administrator route. You can you {id} and other parameters which you want
+
+                app.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}"); // This route is for Controllers which are situated in project controller folder
             app.MapRazorPages();
-
+            app.MapControllers();
             // Data seeding (roles, users)
             using (var scope = app.Services.CreateScope())
             {

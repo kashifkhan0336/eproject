@@ -6,13 +6,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
-using static Eproject.Controllers.HomeController;
 
-namespace Eproject.Areas.Controllers.Admin
+namespace Eproject.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
-
+    [Area("Admin")]
     public class UsersController : Controller
     {
         private readonly ILogger<HomeController> _logger;

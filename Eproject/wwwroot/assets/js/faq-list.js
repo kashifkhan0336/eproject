@@ -81,7 +81,7 @@ $(function () {
 
   if (dt_basic_table.length) {
     dt_basic = dt_basic_table.DataTable({
-      ajax: "/faq/json",
+      ajax: "faq/json",
       columns: [
         { data: '' },
         { data: 'id' },
