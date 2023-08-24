@@ -39,7 +39,7 @@ $(function () {
   // Users datatable
   if (dt_user_table.length) {
     var dt_user = dt_user_table.DataTable({
-        ajax: '/users/json', // JSON file to add data
+        ajax: 'users/json', // JSON file to add data
       columns: [
         // columns according to JSON
         { data: '' },

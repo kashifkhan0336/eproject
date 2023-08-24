@@ -91,7 +91,7 @@ namespace Eproject.Areas.Admin.Controllers
                 Admission_date = user.AdmissionDate,
                 AllRoles = allRoles
             };
-            return View("~/Views/Admin/Manage/Index.cshtml", userView);
+            return View("Manage/Index",userView);
         }
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] RegisterModel.InputModel model)

@@ -19,6 +19,12 @@
             Log in to participate in surveys.
         </p>
     </div>
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="text-error mb-3">
+            @Html.ValidationSummary()
+        </div>
+    }
     <form
         id="loginForm"
         class="sm:w-[300px] md:w-[350px] lg:w-[400px] mx-auto"

@@ -63,8 +63,11 @@ namespace Eproject
                     name: "admin",
                     areaName: "admin",
                     pattern: "admin/{controller=Home}/{action=Index}"); //This is Administrator route. You can you {id} and other parameters which you want
-
-                app.MapControllerRoute(
+            app.MapAreaControllerRoute(
+                name: "user",
+                areaName: "user",
+                pattern: "/{controller=Home}/{action=Index}");
+            app.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}"); // This route is for Controllers which are situated in project controller folder
             app.MapRazorPages();

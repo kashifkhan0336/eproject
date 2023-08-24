@@ -19,7 +19,6 @@ public class EprojectUser : IdentityUser
     public string? Code { get; set; }
 
     [Required]
-    [RegularExpression(@"^\d+$", ErrorMessage = "Class must be a numeric value.")]
     public string? Class { get; set; }
 
     [Required]

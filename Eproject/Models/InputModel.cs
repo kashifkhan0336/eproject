@@ -27,7 +27,6 @@ namespace Eproject.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Text)]
-            [RegularExpression(@"^\d+$", ErrorMessage = "Class must be a numeric value.")]
             [Display(Name = "Class")]
             public string Class { get; set; }
 
@@ -39,7 +38,7 @@ namespace Eproject.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Specification")]
+            [Display(Name = "Section")]
             [MaxLength(1)]
             public string Section { get; set; }
 
@@ -54,7 +53,11 @@ namespace Eproject.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
-            public string Email { get; set; }
+            public string Email { get; set; } 
+
+            [Required]
+            [Display(Name = "Username")]
+            public string Username { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
