@@ -12,6 +12,7 @@ public class EprojectContext : IdentityDbContext<EprojectUser>
     public DbSet<AllowedRole> AllowedRoles { get; set; }
     public DbSet<SurveyEprojectUser> SurveyEprojectUsers { get; set; }
     public DbSet<SurveyCompletion> SurveyCompletions { get; set; }
+    public DbSet<SupportInformation> SupportInformation { get; set; }
     public EprojectContext(DbContextOptions<EprojectContext> options)
         : base(options)
     {

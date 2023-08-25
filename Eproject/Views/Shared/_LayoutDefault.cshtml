@@ -6,6 +6,8 @@
     <title>@ViewData["Title"] - Eproject</title>
     <script type="module" crossorigin src="../../assets/js/main-551a2c86.js"></script>
     <link rel="stylesheet" href="../../assets/css/main-69e02804.css">
+    <link href="https://unpkg.com/survey-jquery@1.9.104/defaultV2.min.css"
+          rel="stylesheet" />
 </head>
 <body>
     <header class="shadow-lg">
@@ -117,7 +119,8 @@
         </p>
     </div>
 </footer>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
