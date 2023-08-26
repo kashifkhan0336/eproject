@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace Eproject.Areas.Controllers.Admin
 {
-    [Route("Admin/Survey")]
+    [Area("Admin")]
     public class SurveyController : Controller
     {
         private readonly ILogger<SurveyController> _logger;
@@ -51,38 +51,38 @@ namespace Eproject.Areas.Controllers.Admin
 
             return Ok("Survey deleted successfully");
         }
-        [HttpGet("Create")]
+
         public IActionResult Create()
         {
-            return View();
+            return View("Create/Index");
         }
 
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateSurveyDto surveyDto)
         {
+            var validRoles = surveyDto.AllowedRoles?.Where(roleDto => roleDto.RoleName != "false").ToList();
 
+            if (!validRoles.Any())
+            {
+                ModelState.AddModelError("allowedRoles", "There must a role.");
+            }
             if (!ModelState.IsValid)
             {
                 var errors = ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage));
-                return BadRequest(errors);
+                ViewData["Errors"] = errors;
+                return View("Create/Index", surveyDto); // Pass the surveyDto back to the viewreturn View("Create/Index", ModelState.ValidationState);
             }
-
-            // Filter out roles with the value "false"
-            var validRoles = surveyDto.AllowedRoles?.Where(roleDto => roleDto.RoleName != "false").ToList();
-
-            var allowedRoles = validRoles ?? new List<AllowedRoleDto>
+            if (validRoles.All(roleDto => roleDto.RoleName != "Admin"))
             {
-                new() { RoleName = "Student" },
-                new() { RoleName = "Faculty" }
-            };
-
+                validRoles.Add(new AllowedRoleDto { RoleName = "Admin" });
+            }
             var newSurvey = new Survey
             {
                 Name = surveyDto.Name,
                 Description = surveyDto.Description,
                 SurveyData = surveyDto.SurveyData,
-                Allowed = allowedRoles
+                Allowed = validRoles
                     .Select(roleDto => new AllowedRole { RoleName = roleDto.RoleName })
                     .ToList()
             };

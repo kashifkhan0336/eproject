@@ -3,37 +3,66 @@
 *@
 @{
     Layout = "_LayoutDefault";
+    var surveyId = ViewData["surveyId"] as int?;
 }
 
-<div id="surveyElement"></div>
+<div id="surveyElement" data-survey-id="@surveyId"></div>
 
 @section Scripts{
     <script src="https://unpkg.com/survey-jquery@1.9.104/survey.jquery.min.js"></script>
     <script>
+        console.log($("#surveyElement").data("survey-id"));
         const json = {
             title: "Scored Quiz Example",
             showProgressBar: "top",
-            pages: [
+            "pages": [
                 {
-                    questions: [
+                    "elements": [
                         {
-                            type: "radiogroup",
-                            name: "question1",
-                            title: "What is the capital of France?",
-                            choices: ["Paris", "London", "Berlin", "Rome"],
-                            correctAnswer: "Paris",
-                            points: 5
+                            "type": "radiogroup",
+                            "name": "civilwar",
+                            "title": "When was the American Civil War?",
+                            "choices": [
+                                "1796-1803",
+                                "1810-1814",
+                                "1861-1865",
+                                "1939-1945"
+                            ],
+                            "correctAnswer": "1861-1865",
+                            "score": 5
                         },
                         {
-                            type: "radiogroup",
-                            name: "question2",
-                            title: "Which planet is known as the Red Planet?",
-                            choices: ["Venus", "Mars", "Jupiter", "Saturn"],
-                            correctAnswer: "Mars",
-                            points: 5
+                            "type": "radiogroup",
+                            "name": "libertyordeath",
+                            "title": "Whose quote is this: \"Give me liberty, or give me death\"?",
+                            "choicesOrder": "random",
+                            "choices": [
+                                "John Hancock",
+                                "James Madison",
+                                "Patrick Henry",
+                                "Samuel Adams"
+                            ],
+                            "correctAnswer": "Patrick Henry",
+                            "score": 5
+                        },
+                        {
+                            "type": "radiogroup",
+                            "name": "magnacarta",
+                            "title": "What is Magna Carta?",
+                            "choicesOrder": "random",
+                            "choices": [
+                                "The foundation of the British parliamentary system",
+                                "The Great Seal of the monarchs of England",
+                                "The French Declaration of the Rights of Man",
+                                "The charter signed by the Pilgrims on the Mayflower"
+                            ],
+                            "correctAnswer": "The foundation of the British parliamentary system",
+                            "score": 5
                         }
+
+
                     ]
-                }
+                },
             ]
         };
         const themeJson = {
@@ -83,13 +112,61 @@
             "themeName": "default",
             "colorPalette": "dark"
         }
+        Survey.Serializer.addProperty("question", {
+            name: "score:number"
+        });
         const survey = new Survey.Model(json);
+
         // You can delete the line below if you do not use a customized theme
         survey.applyTheme(themeJson);
+        function calculateMaxScore(questions) {
+            var maxScore = 0;
+            questions.forEach((question) => {
+                if (!!question.score) {
+                    maxScore += question.score;
+                }
+            });
+            return maxScore;
+        }
+        function calculateTotalScore(data) {
+            var totalScore = 0;
+            Object.keys(data).forEach((qName) => {
+                const question = survey.getQuestionByValueName(qName);
+                if (question.isAnswerCorrect()) {
+                    if (!!question.score) {
+                        totalScore += question.score;
+                    }
+                }
+            });
+            return totalScore;
+        }
         $("#surveyElement").Survey({
             model: survey,
             onComplete: function (survey, options) {
-                
+                const totalScore = calculateTotalScore(survey.data);
+                const maxScore = calculateMaxScore(survey.getAllQuestions());
+                console.log(totalScore);
+                console.log(maxScore);
+                var surveyData = {
+                    surveyId: @surveyId, // Replace with the actual survey ID
+                    Points: maxScore // Replace with the actual points
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/participant/complete",
+                    data: JSON.stringify(surveyData),
+                    contentType: "application/json", 
+                    success: function (response) {
+                        console.log(response)
+                        // Handle success response here
+                        console.log("Survey submitted successfully");
+                    },
+                    error: function (error) {
+                        // Handle error response here
+                        console.error("Error submitting survey: " + error);
+                    }
+                });
             }
         });
     </script>

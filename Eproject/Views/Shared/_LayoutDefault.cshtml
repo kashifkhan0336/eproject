@@ -30,36 +30,64 @@
                         class="menu menu-sm dropdown-content mt-3 z-30 p-2 shadow-lg bg-base-100 rounded-box w-52">
                         <li class="mb-2"><a href="/index.html">Home</a></li>
                         <li class="mb-2"><a href="./pages/faq.html">FAQ</a></li>
-                        <li class="mb-2"><a asp-action="Support" asp-controller="Home" >Support</a></li>
+                        <li class="mb-2"><a href="./pages/support.html">Support</a></li>
                         <li class="mb-2">
                             <a href="./pages/surveys.html">Survey Board</a>
                         </li>
-                        <li class="mb-2"><a>Profile Edit</a></li>
-                        <div class="gap-2 flex sm:hidden">
-                            <a class="btn btn-primary btn-outline"
-                               href="./pages/register.html">Register</a>
-                            <a class="btn btn-primary" href="./pages/login.html">Login</a>
-                        </div>
-                    </ul>
+                        <li><a href="./pages/seminars.html">Seminars</a></li>
+                        <div class="sm:hidden">
+                            <div class="divider p-0 m-0"></div>
+                        <li class="mb-2">
+                            <a href="./pages/manage-profile.html">Profile Edit</a>
+                        </li>
+                        <li class="mb-2"><a href="">Logout</a></li>
                 </div>
-                <a class="btn btn-ghost normal-case text-xl" href="/index.html">Enviromental Surveys</a>
-            </div>
-            <div class="navbar-center hidden lg:flex">
-                <ul class="menu menu-horizontal px-1">
-                    <li><a href="/index.html">Home</a></li>
-                    <li><a href="./pages/faq.html">FAQ</a></li>
-                    <li><a asp-action="Support" asp-controller="Home">Support</a></li>
-                    <li><a href="./pages/surveys.html">Survey Board</a></li>
-                    <li><a href="./pages/createPost.html">Effective Participation</a></li>
-                    <li><a href="./pages/seminars.html">Seminars</a></li>
-                    <li><a href="./pages/manage-profile.html">Profile Edit</a></li>
+                <div class="gap-2 flex sm:hidden">
+                    <a class="btn btn-primary btn-outline"
+                       href="./pages/register.html">Register</a>
+                    <a class="btn btn-primary" href="./pages/login.html">Login</a>
+                </div>
                 </ul>
             </div>
-            <div class="navbar-end gap-2 hidden sm:flex">
-                <button class="btn btn-primary" id="modeBtn">mode</button>
-                <a class="btn btn-primary btn-outline" href="./pages/register.html">Register</a>
-                <a class="btn btn-primary" href="./pages/login.html">Login</a>
-            </div>
+            <a class="btn btn-ghost normal-case text-xl" href="/index.html">Enviromental Surveys</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="./pages/faq.html">FAQ</a></li>
+                <li><a href="./pages/support.html">Support</a></li>
+                <li><a href="./pages/surveys.html">Survey Board</a></li>
+                <li><a href="./pages/seminars.html">Seminars</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end gap-2">
+            <details class="dropdown hidden sm:flex">
+                <summary class="w-12 m-1 btn">
+                    <div class="avatar">
+                        <div class="w-12 rounded-full">
+                            <img src="/grow.jpg" />
+                        </div>
+                    </div>
+                </summary>
+                <ul class="p-2 shadow menu dropdown-content z-[30] bg-base-100 rounded-box w-52">
+                    <li><a href="/pages/manage-profile.html">Profile Edit</a></li>
+                    <li><a>Logout</a></li>
+                </ul>
+            </details>
+            <button class="btn btn-primary" id="modeBtn">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="16"
+                     height="16"
+                     fill="currentColor"
+                     class="bi bi-moon"
+                     viewBox="0 0 16 16">
+                    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z" />
+                </svg>
+            </button>
+            <a class="btn btn-primary btn-outline hidden sm:flex"
+               href="./pages/register.html">Register</a>
+            <a class="btn btn-primary hidden sm:flex" href="./pages/login.html">Login</a>
+        </div>
         </div>
     </header>
         <main>
@@ -67,7 +95,7 @@
         </main>
 
 
-<footer class="bg-primary py-12">
+<footer class="bg-primary py-12 mt-10">
     <div class="container mx-auto px-4">
         <div class="flex flex-wrap justify-between items-center mb-8">
             <a href="#" class="text-primary-content text-xl font-bold"

@@ -37,6 +37,7 @@ public class EprojectUser : IdentityUser
     public ICollection<SurveyCompletion> CompletedSurveys { get; set; } = new List<SurveyCompletion>();
 
     public ICollection<SurveyEprojectUser> ParticipatedSurveys { get; set; } = new List<SurveyEprojectUser>();
+    public ICollection<SeminarEntry> SeminarEntries { get; set; } = new List<SeminarEntry>();
 }
 
 public enum UserStatus

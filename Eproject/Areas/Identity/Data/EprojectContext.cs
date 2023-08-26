@@ -9,6 +9,7 @@ public class EprojectContext : IdentityDbContext<EprojectUser>
 {
     public DbSet<FaqEntry> FaqEntries { get; set; }
     public DbSet<Survey> Surveys { get; set; }
+    public DbSet<SeminarEntry> SeminarEntries { get; set; }
     public DbSet<AllowedRole> AllowedRoles { get; set; }
     public DbSet<SurveyEprojectUser> SurveyEprojectUsers { get; set; }
     public DbSet<SurveyCompletion> SurveyCompletions { get; set; }
@@ -54,6 +55,11 @@ public class EprojectContext : IdentityDbContext<EprojectUser>
             .HasOne(sc => sc.User)
             .WithMany(u => u.CompletedSurveys)
             .HasForeignKey(sc => sc.EprojectUserId);
+
+        builder.Entity<SeminarEntry>()
+            .HasOne(seminarEntry => seminarEntry.EprojectUser)
+            .WithMany(user => user.SeminarEntries)
+            .HasForeignKey(seminarEntry => seminarEntry.EprojectUserId);
     }
     // Add your customizations after calling base.OnModelCreating(builder);
 }

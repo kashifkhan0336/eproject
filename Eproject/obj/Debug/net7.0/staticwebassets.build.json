@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nkZstfOKFxZgsRLJ7lBcOuX27nO/9qXZcTQCXI/YRjY=",
+  "Hash": "gZzp8rklI+rw9Gu1m1Q8ljQUUMvZE/b5fypfGPRqm1Q=",
   "Source": "Eproject",
   "BasePath": "_content/Eproject",
   "Mode": "Default",
@@ -16301,6 +16301,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\uploads\\41c3151e-1128-427e-aa27-35d277824f9b_a.crt",
+      "SourceId": "Eproject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\",
+      "BasePath": "_content/Eproject",
+      "RelativePath": "uploads/41c3151e-1128-427e-aa27-35d277824f9b_a.crt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\41c3151e-1128-427e-aa27-35d277824f9b_a.crt"
     }
   ]
 }

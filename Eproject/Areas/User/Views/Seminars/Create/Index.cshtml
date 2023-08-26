@@ -1,0 +1,71 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_LayoutDefault";
+}
+<div class="flex items-center lg:container mx-auto">
+    <div class="max-w-5xl w-full px-6 py-8 shadow-md rounded-lg">
+        <h2 class="text-3xl font-semibold mb-4">Seminar Details</h2>
+        <form asp-area="User" asp-action="Create" asp-controller="Seminars" enctype="multipart/form-data" method="post">
+            <div class="mb-4">
+                <input type="text"
+                       id="title"
+                       name="Title" 
+                placeholder="Seminar title"
+                class="input input-bordered w-full"
+                required />
+            </div>
+            <div class="mb-4">
+                <input type="date"
+                       id="date"
+                       name="Date" 
+                class="input input-bordered w-full"
+                required />
+            </div>
+            <div class="mb-4">
+                <label for="location" class="block font-medium mb-2">Location:</label>
+                <input type="text"
+                       id="location"
+                       name="Location" 
+                class="input input-bordered w-full"
+                required />
+            </div>
+            <div class="mb-4">
+                <input type="number"
+                       id="participants"
+                       name="NumberOfParticipants" 
+                placeholder="Participants"
+                class="input input-bordered w-full"
+                required />
+            </div>
+            <div class="mb-4">
+                <textarea id="description"
+                          name="Description"
+                  placeholder="Description"
+                  class="textarea textarea-bordered w-full"
+                  rows="4"
+                  required></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="presentation" class="block font-medium mb-2">Presentation Material:</label>
+                <input type="file"
+                       id="presentation"
+                       name="PresentationMaterial"
+                       class="file-input file-input-bordered w-full" />
+            </div>
+            <div class="mb-4">
+                <textarea id="impact"
+                          name="Impact" 
+                  placeholder="Impact"
+                  class="w-full textarea textarea-bordered"
+                  rows="4"
+                  required></textarea>
+            </div>
+            <button type="submit"
+                    class="btn btn-primary">
+                Submit
+            </button>
+        </form>
+    </div>
+</div>

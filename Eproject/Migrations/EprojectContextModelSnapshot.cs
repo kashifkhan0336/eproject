@@ -159,6 +159,52 @@ namespace Eproject.Migrations
                     b.ToTable("FaqEntries");
                 });
 
+            modelBuilder.Entity("Eproject.Models.SeminarEntry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EprojectUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Impact")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("NumberOfParticipants")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PresentationMaterialLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EprojectUserId");
+
+                    b.ToTable("SeminarEntries");
+                });
+
             modelBuilder.Entity("Eproject.Models.SupportInformation", b =>
                 {
                     b.Property<int>("Id")
@@ -410,6 +456,17 @@ namespace Eproject.Migrations
                     b.Navigation("Survey");
                 });
 
+            modelBuilder.Entity("Eproject.Models.SeminarEntry", b =>
+                {
+                    b.HasOne("Eproject.Models.EprojectUser", "EprojectUser")
+                        .WithMany("SeminarEntries")
+                        .HasForeignKey("EprojectUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EprojectUser");
+                });
+
             modelBuilder.Entity("Eproject.Models.SurveyCompletion", b =>
                 {
                     b.HasOne("Eproject.Models.EprojectUser", "User")
@@ -504,6 +561,8 @@ namespace Eproject.Migrations
                     b.Navigation("CompletedSurveys");
 
                     b.Navigation("ParticipatedSurveys");
+
+                    b.Navigation("SeminarEntries");
                 });
 
             modelBuilder.Entity("Eproject.Models.Survey", b =>

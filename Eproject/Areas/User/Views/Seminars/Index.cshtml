@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<EprojectUser> UserManager
+@model List<SeminarEntry>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    Layout = "_LayoutDefault";
+}
+@if (User.IsInRole("Faculty") || User.IsInRole("Admin"))
+{
+    <div class="flex justify-end my-3 lg:container mx-auto mt-13">
+        <a asp-area="User" asp-action="Create" asp-controller="Seminars" class="btn btn-primary">Create +</a>
+    </div>
+}
+<div class="flex items-center lg:container mx-auto">
+    <div class=" w-full px-6 py-8 rounded-lg">
+        <h2 class="text-2xl font-semibold mb-4">Conducted seminars</h2>
+
+        <ul class="space-y-6">
+            <!-- Replace this with a loop to iterate through seminar data -->
+            @foreach (var seminar in Model)
+            {
+@*                <tr>
+                    <td>@seminar.Title</td>
+                    <td>@seminar.Date.ToShortDateString()</td>
+                    <td>@seminar.Location</td>
+                    <td>@(seminar.EprojectUser != null ? seminar.EprojectUser.UserName : "Unknown User")</td>
+                </tr>*@
+                <div class="card bg-neutral">
+                    <div class="card-body">
+                        <h3 class="text-xl font-semibold mb-2">@seminar.Title</h3>
+                        <p class="mb-2">Date: @seminar.Date.ToShortDateString()</p>
+                        <p class="mb-2">Location: @seminar.Location</p>
+                        <p class="mb-2">Participants: @seminar.NumberOfParticipants</p>
+                        <div class="flex items-center space-x-2">
+                            <span class="">Presentation:</span>
+                            <a href="@seminar.PresentationMaterialLink" class="text-primary hover:underline">Download</a>
+                        </div>
+                        <p class="mt-2">Impact: @seminar.Impact</p>
+                    </div>
+                </div>
+            }
+        </ul>
+    </div>
+</div>

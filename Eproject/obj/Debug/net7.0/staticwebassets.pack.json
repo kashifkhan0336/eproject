@@ -3441,6 +3441,10 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\uploads\\41c3151e-1128-427e-aa27-35d277824f9b_a.crt",
+      "PackagePath": "staticwebassets\\uploads\\41c3151e-1128-427e-aa27-35d277824f9b_a.crt"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Eproject.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

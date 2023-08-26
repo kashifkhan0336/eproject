@@ -27,15 +27,19 @@ namespace Eproject.Areas.User.Controllers
         //{
         //    return View();
         //}
-
+        
         [Authorize]
         [HttpPost]
-        public async Task<string> Complete(int surveyId, int points)
+        public async Task<string> Complete([FromBody]SurveyCompletionDto completionDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return "Bad request!";
+            }
             var currentUser = await _userManager.GetUserAsync(User);
             var survey = await _context.Surveys
                 .Include(s => s.Allowed)
-                .FirstOrDefaultAsync(s => s.Id == surveyId);
+                .FirstOrDefaultAsync(s => s.Id == completionDto.surveyId);
 
             if (survey == null || currentUser == null)
             {
@@ -58,7 +62,7 @@ namespace Eproject.Areas.User.Controllers
 
             // Check if the user has already completed this survey
             var existingCompletion = await _context.SurveyCompletions
-                .FirstOrDefaultAsync(sc => sc.SurveyId == surveyId && sc.EprojectUserId == currentUser.Id);
+                .FirstOrDefaultAsync(sc => sc.SurveyId == completionDto.surveyId && sc.EprojectUserId == currentUser.Id);
 
             if (existingCompletion != null)
             {
@@ -67,13 +71,12 @@ namespace Eproject.Areas.User.Controllers
 
             var completion = new SurveyCompletion
             {
-                SurveyId = surveyId,
+                SurveyId = completionDto.surveyId,
                 EprojectUserId = currentUser.Id,
-                Points = points
+                Points = completionDto.Points
             };
 
             _context.SurveyCompletions.Add(completion); // Add completion to context
-
             await _context.SaveChangesAsync();
 
             return "Survey completed and completion recorded successfully";
@@ -81,7 +84,7 @@ namespace Eproject.Areas.User.Controllers
         [Authorize]
         public async Task<IActionResult> Join(int surveyId)
         {
-
+            ViewData["surveyId"] = surveyId;
             var currentUser = await _userManager.GetUserAsync(User);
             var survey = _context.Surveys
                 .Include(s => s.Allowed)

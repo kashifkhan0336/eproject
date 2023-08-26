@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Eproject.Models.DTO
 {
@@ -16,6 +17,7 @@ namespace Eproject.Models.DTO
         public string Name { get; set; }
         public string Description { get; set; }
         public string SurveyData { get; set; }
+        [Required]
         public List<AllowedRoleDto> AllowedRoles { get; set; }
     }
 

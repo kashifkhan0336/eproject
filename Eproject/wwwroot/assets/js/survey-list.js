@@ -96,6 +96,8 @@ $(function () {
                         var roleBadgeObj = {
                             Student: '<i class="mdi mdi-account-outline mdi-20px text-primary me-2"></i>',
                             Faculty: '<i class="mdi mdi-cog-outline mdi-20px text-warning me-2"></i>',
+                            Admin: '<i class="mdi mdi-laptop mdi-20px text-danger me-2"></i>'
+
 
                         };
                         data.forEach(role => roles.push(roleBadgeObj[role.RoleName]))
