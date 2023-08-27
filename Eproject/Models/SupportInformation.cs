@@ -6,12 +6,12 @@ namespace Eproject.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Full Name is required")]
+        [Required(ErrorMessage = "Location is required")]
         [StringLength(100, ErrorMessage = "Full Name cannot exceed 100 characters")]
-        public string FullName { get; set; }
+        public string Location { get; set; }
 
         [StringLength(100, ErrorMessage = "Company name cannot exceed 100 characters")]
-        public string Company { get; set; }
+        public string Address { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress(ErrorMessage = "Invalid email address")]

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gZzp8rklI+rw9Gu1m1Q8ljQUUMvZE/b5fypfGPRqm1Q=",
+  "Hash": "vv5HH+8pzSemE73dkBbbL6tB8zpNJveEjoLiwZ1ee0c=",
   "Source": "Eproject",
   "BasePath": "_content/Eproject",
   "Mode": "Default",
@@ -6409,6 +6409,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\layouts\\layout-without-navbar-light.png"
     },
     {
+      "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\leaderboard\\trophy.png",
+      "SourceId": "Eproject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\",
+      "BasePath": "_content/Eproject",
+      "RelativePath": "assets/img/leaderboard/trophy.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\leaderboard\\trophy.png"
+    },
+    {
       "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\pages\\header-dark.png",
       "SourceId": "Eproject",
       "SourceType": "Discovered",
@@ -7820,12 +7837,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\index-3a16d620.js"
     },
     {
-      "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\login-c1256bef.js",
+      "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\login-34b7943c.js",
       "SourceId": "Eproject",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\",
       "BasePath": "_content/Eproject",
-      "RelativePath": "assets/js/login-c1256bef.js",
+      "RelativePath": "assets/js/login-34b7943c.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -7834,7 +7851,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\js\\login-c1256bef.js"
+      "OriginalItemSpec": "wwwroot\\assets\\js\\login-34b7943c.js"
     },
     {
       "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\main.js",
@@ -7854,12 +7871,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\main.js"
     },
     {
-      "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\main-551a2c86.js",
+      "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\main-4dea4bc7.js",
       "SourceId": "Eproject",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\",
       "BasePath": "_content/Eproject",
-      "RelativePath": "assets/js/main-551a2c86.js",
+      "RelativePath": "assets/js/main-4dea4bc7.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -7868,7 +7885,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\js\\main-551a2c86.js"
+      "OriginalItemSpec": "wwwroot\\assets\\js\\main-4dea4bc7.js"
     },
     {
       "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\maps-leaflet.js",
@@ -8245,12 +8262,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\pages-profile.js"
     },
     {
-      "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\register-7f902d8a.js",
+      "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\register-76f49db3.js",
       "SourceId": "Eproject",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\",
       "BasePath": "_content/Eproject",
-      "RelativePath": "assets/js/register-7f902d8a.js",
+      "RelativePath": "assets/js/register-76f49db3.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -8259,7 +8276,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\js\\register-7f902d8a.js"
+      "OriginalItemSpec": "wwwroot\\assets\\js\\register-76f49db3.js"
     },
     {
       "Identity": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\survey-list.js",

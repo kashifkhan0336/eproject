@@ -1,15 +1,16 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="forest" id="themeTag">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Eproject</title>
-    <script type="module" crossorigin src="../../assets/js/main-551a2c86.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" integrity="sha512-Zcn6bjR/8RZbLEpLIeOwNtzREBAJnUKESxces60Mpoj+2okopSAcSUIUOseddDm0cxnGQzxIR7vJgsLZbdLE3w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="module" crossorigin src="/assets/main-4dea4bc7.js"></script>
     <link rel="stylesheet" href="../../assets/css/main-69e02804.css">
     <link href="https://unpkg.com/survey-jquery@1.9.104/defaultV2.min.css"
           rel="stylesheet" />
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between">
     <header class="shadow-lg">
         <div class="navbar bg-base-100 w-full lg:container mx-auto">
             <div class="navbar-start">
@@ -28,66 +29,94 @@
                     </label>
                     <ul tabindex="0"
                         class="menu menu-sm dropdown-content mt-3 z-30 p-2 shadow-lg bg-base-100 rounded-box w-52">
-                        <li class="mb-2"><a href="/index.html">Home</a></li>
-                        <li class="mb-2"><a href="./pages/faq.html">FAQ</a></li>
-                        <li class="mb-2"><a href="./pages/support.html">Support</a></li>
+                        <li class="mb-2"><a asp-controller="Home" asp-area="User" asp-action="Index">Home</a></li>
+                        <li class="mb-2"><a asp-controller="Faq" asp-area="User" asp-action="Index">FAQ</a></li>
+                        <li class="mb-2"><a asp-controller="Support" asp-area="User" asp-action="Index">Support</a></li>
                         <li class="mb-2">
-                            <a href="./pages/surveys.html">Survey Board</a>
+                            <a asp-controller="Surveys" asp-area="User" asp-action="Index">Survey Board</a>
                         </li>
-                        <li><a href="./pages/seminars.html">Seminars</a></li>
+                        <li><a asp-area="User" asp-controller="Seminars" asp-action="Index">Seminars</a></li>
                         <div class="sm:hidden">
                             <div class="divider p-0 m-0"></div>
-                        <li class="mb-2">
-                            <a href="./pages/manage-profile.html">Profile Edit</a>
-                        </li>
-                        <li class="mb-2"><a href="">Logout</a></li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="mb-2">
+                                <a href="/identity/Account/Manage">Profile Edit</a>
+                                </li>
+                                <li class="mb-2">
+                                    <li>
+                                        <form asp-area="User" asp-action="Logout" asp-controller="Home">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit">Logout</button>
+                                        </form>
+                                
+                                    </li>
+                                </li>
+                            }
+                            else
+                            {
+                                <div class="gap-2 flex sm:hidden">
+                                <a class="btn btn-primary btn-outline" href="/identity/Account/Register">Register</a>
+                                <a class="btn btn-primary" href="/identity/Account/Login">Login</a>
+                                </div>
+                            }
+
                 </div>
-                <div class="gap-2 flex sm:hidden">
-                    <a class="btn btn-primary btn-outline"
-                       href="./pages/register.html">Register</a>
-                    <a class="btn btn-primary" href="./pages/login.html">Login</a>
-                </div>
+
                 </ul>
             </div>
-            <a class="btn btn-ghost normal-case text-xl" href="/index.html">Enviromental Surveys</a>
+            <a class="btn btn-ghost normal-case text-xl" asp-controller="Home" asp-area="User" asp-action="Index">Enviromental Surveys</a>
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="./pages/faq.html">FAQ</a></li>
-                <li><a href="./pages/support.html">Support</a></li>
-                <li><a href="./pages/surveys.html">Survey Board</a></li>
-                <li><a href="./pages/seminars.html">Seminars</a></li>
+                <li><a asp-controller="Home" asp-area="User" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Faq" asp-area="User" asp-action="Index">FAQ</a></li>
+                <li><a asp-controller="Support" asp-area="User" asp-action="Index">Support</a></li>
+                <li><a asp-controller="Surveys" asp-area="User" asp-action="Index">Survey Board</a></li>
+                <li><a asp-area="User" asp-controller="Seminars" asp-action="Index">Seminars</a></li>
             </ul>
         </div>
-        <div class="navbar-end gap-2">
-            <details class="dropdown hidden sm:flex">
-                <summary class="w-12 m-1 btn">
-                    <div class="avatar">
-                        <div class="w-12 rounded-full">
-                            <img src="/grow.jpg" />
-                        </div>
-                    </div>
-                </summary>
-                <ul class="p-2 shadow menu dropdown-content z-[30] bg-base-100 rounded-box w-52">
-                    <li><a href="/pages/manage-profile.html">Profile Edit</a></li>
-                    <li><a>Logout</a></li>
-                </ul>
-            </details>
-            <button class="btn btn-primary" id="modeBtn">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     fill="currentColor"
-                     class="bi bi-moon"
-                     viewBox="0 0 16 16">
-                    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z" />
-                </svg>
-            </button>
-            <a class="btn btn-primary btn-outline hidden sm:flex"
-               href="./pages/register.html">Register</a>
-            <a class="btn btn-primary hidden sm:flex" href="./pages/login.html">Login</a>
-        </div>
+            <div class="navbar-end gap-2">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <details class="dropdown hidden sm:flex">
+                        <summary class="w-12 m-1 btn">
+                            <div class="avatar">
+                                <div class="w-12 rounded-full">
+                                    <img src="/grow.jpg" />
+                                </div>
+                            </div>
+                        </summary>
+                        <ul class="p-2 shadow menu dropdown-content z-[30] bg-base-100 rounded-box w-52">
+                        <li><a href="/identity/Account/Manage">Profile Edit</a></li>
+                            <li>
+                                <form asp-area="User" asp-action="Logout" asp-controller="Home">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit">Logout</button>
+                                </form>
+                                
+                            </li>
+                        </ul>
+                    </details>
+                }
+                else
+                {
+                    <a class="btn btn-primary btn-outline hidden sm:flex"
+                   href="/identity/Account/Register">Register</a>
+                <a class="btn btn-primary hidden sm:flex" href="/identity/Account/Login">Login</a>
+                }
+    
+                <button class="btn btn-primary" id="modeBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="16"
+                         height="16"
+                         fill="currentColor"
+                         class="bi bi-moon"
+                         viewBox="0 0 16 16">
+                        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </header>
         <main>
@@ -106,35 +135,26 @@
                     <li>
                         <a
                             class="text-primary-content hover:text-gray-300"
-                            href="./index.html"
-                        >Home</a
-                        >
+                            asp-controller="Home" asp-area="User" asp-action="Index"
+                        >Home</a>
                     </li>
                     <li>
                         <a
                             class="text-primary-content hover:text-gray-300"
-                            href="./pages/faq.html"
-                        >FAQ</a
-                        >
+                            asp-controller="Faq" asp-area="User" asp-action="Index"
+                        >FAQ</a>
                     </li>
                     <li>
                         <a
                             class="text-primary-content hover:text-gray-300"
-                            href="./pages/support.html"
-                        >Support</a
-                        >
+                            asp-controller="Support" asp-area="User" asp-action="Index"
+                        >Support</a>
                     </li>
                     <li>
                         <a
                             class="text-primary-content hover:text-gray-300"
-                            href="./pages/surveys.html"
-                        >Survey Board</a
-                        >
-                    </li>
-                    <li>
-                        <a class="text-primary-content hover:text-gray-300"
-                        >Profile Edit</a
-                        >
+                            asp-controller="Surveys" asp-area="User" asp-action="Index"
+                        >Survey Board</a>
                     </li>
                 </ul>
             </nav>
@@ -148,7 +168,21 @@
     </div>
 </footer>
 <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+<script>
+      const myElement = document.getElementById("themeTag");
+      const changeThemeButton = document.getElementById("modeBtn");
+
+      // Add a click event listener to the button
+      changeThemeButton.addEventListener("click", function () {
+        // Check the current theme and toggle to the opposite theme
+        const currentTheme = myElement.getAttribute("data-theme");
+        const newTheme = currentTheme === "forest" ? "lemonade" : "forest";
+
+        // Update the data-theme attribute value
+        myElement.setAttribute("data-theme", newTheme);
+      });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

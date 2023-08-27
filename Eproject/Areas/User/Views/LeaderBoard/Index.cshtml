@@ -1,0 +1,65 @@
+﻿@model List<Survey>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_LayoutDefault";
+}
+
+<div class="lg:container mx-auto p-2">
+    
+    @foreach (var survey in Model)
+    {
+        <div class="mb-8">
+            <h1 class="text-4xl my-6 font-semibold text-center">@survey.Name</h1>
+            <div class="collapse collapse-arrow">
+                <input type="radio" name="my-accordion-1" checked="checked"/>
+                <div class="collapse-title text-xl font-medium bg-base-200">Results</div>
+                <div class="collapse-content">
+                    <div class="overflow-x-auto shadow-lg p-4">
+                        <table class="table text-lg">
+                            <!-- head -->
+                            <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Points</th>
+                                <th>Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- row 1 -->
+                            @{
+                                var orderedCompletions = survey.Completions
+                                    .OrderByDescending(completion => completion.Points) // Sort by points (descending)
+                                    .ThenBy(completion => completion.CompletionTime) // Sort by completion time (ascending)
+                                    .ToList();
+
+                                int rank = 1;
+                            }
+
+                            @foreach (var completion in orderedCompletions)
+                            {
+                                <tr class="hover">
+                                    <td>@rank</td>
+                                    <td>@completion.User.Name</td>
+                                    <td>@completion.Points</td>
+                                    <td>@completion.CompletionTime.ToShortDateString()</td>
+                                    @if (rank == 1)
+                                    {
+                                        <td>
+                                                <img class="w-10" src="../../assets/img/leaderboard/trophy.png" alt="" />
+                                        </td>
+                                    }
+                                </tr>
+                                rank++;
+                            }
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

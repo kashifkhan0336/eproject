@@ -40,8 +40,8 @@ namespace Eproject.Areas.Controllers.Admin
             }
             else
             {
-                supportInfo.FullName = information.FullName;
-                supportInfo.Company = information.Company;
+                supportInfo.Location = information.Location;
+                supportInfo.Address = information.Address;
                 supportInfo.Email = information.Email;
                 supportInfo.PhoneNumber = information.PhoneNumber;
             }

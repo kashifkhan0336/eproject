@@ -7,18 +7,20 @@ using System.Diagnostics;
 
 namespace Eproject.Controllers
 {
-
+    [Area("User")]
     public partial class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<EprojectUser> _userManager;
-
-        public HomeController(ILogger<HomeController> logger, RoleManager<IdentityRole> roleManager, UserManager<EprojectUser> userManager)
+        private readonly SignInManager<EprojectUser> _signInManager;
+        public HomeController(ILogger<HomeController> logger, RoleManager<IdentityRole> roleManager, UserManager<EprojectUser> userManager, SignInManager<EprojectUser> signInManager)
         {
             _userManager = userManager;
             _logger = logger;
             _roleManager = roleManager;
+            _signInManager = signInManager;
+
         }
 
         public IActionResult Index()
@@ -26,14 +28,15 @@ namespace Eproject.Controllers
             return View();
         }
 
-
-
-
-        public async Task<IActionResult> Support()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
         {
+            await _signInManager.SignOutAsync();
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

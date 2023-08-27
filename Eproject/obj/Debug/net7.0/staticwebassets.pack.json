@@ -1113,6 +1113,10 @@
       "PackagePath": "staticwebassets\\assets\\img\\layouts\\layout-without-navbar-light.png"
     },
     {
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\leaderboard\\trophy.png",
+      "PackagePath": "staticwebassets\\assets\\img\\leaderboard\\trophy.png"
+    },
+    {
       "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\img\\pages\\header-dark.png",
       "PackagePath": "staticwebassets\\assets\\img\\pages\\header-dark.png"
     },
@@ -1445,12 +1449,12 @@
       "PackagePath": "staticwebassets\\assets\\js\\index-3a16d620.js"
     },
     {
-      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\login-c1256bef.js",
-      "PackagePath": "staticwebassets\\assets\\js\\login-c1256bef.js"
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\login-34b7943c.js",
+      "PackagePath": "staticwebassets\\assets\\js\\login-34b7943c.js"
     },
     {
-      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\main-551a2c86.js",
-      "PackagePath": "staticwebassets\\assets\\js\\main-551a2c86.js"
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\main-4dea4bc7.js",
+      "PackagePath": "staticwebassets\\assets\\js\\main-4dea4bc7.js"
     },
     {
       "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\main.js",
@@ -1545,8 +1549,8 @@
       "PackagePath": "staticwebassets\\assets\\js\\pages-profile.js"
     },
     {
-      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\register-7f902d8a.js",
-      "PackagePath": "staticwebassets\\assets\\js\\register-7f902d8a.js"
+      "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\register-76f49db3.js",
+      "PackagePath": "staticwebassets\\assets\\js\\register-76f49db3.js"
     },
     {
       "Id": "C:\\Users\\Kashif Khan\\source\\repos\\Eproject\\Eproject\\wwwroot\\assets\\js\\survey-list.js",

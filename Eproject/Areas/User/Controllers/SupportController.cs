@@ -1,5 +1,6 @@
 ﻿using Eproject.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Eproject.Areas.User.Controllers
 {
@@ -14,9 +15,10 @@ namespace Eproject.Areas.User.Controllers
             _context = context;
             _logger = logger;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var supportInformation = await _context.SupportInformation.FirstOrDefaultAsync();
+            return View(supportInformation);
         }
     }
 }

@@ -6,7 +6,10 @@
     var surveyId = ViewData["surveyId"] as int?;
 }
 
-<div id="surveyElement" data-survey-id="@surveyId"></div>
+<div class="lg:container mx-auto p-2">
+    <div id="surveyElement" data-survey-id="@surveyId"></div>
+</div>
+
 
 @section Scripts{
     <script src="https://unpkg.com/survey-jquery@1.9.104/survey.jquery.min.js"></script>
@@ -149,7 +152,7 @@
                 console.log(maxScore);
                 var surveyData = {
                     surveyId: @surveyId, // Replace with the actual survey ID
-                    Points: maxScore // Replace with the actual points
+                    Points: totalScore // Replace with the actual points
                 };
 
                 $.ajax({

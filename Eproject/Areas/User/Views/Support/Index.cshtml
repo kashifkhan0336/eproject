@@ -1,48 +1,39 @@
-﻿@*
+﻿@model SupportInformation
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
     Layout = "_LayoutDefault";
 }
+
 <div class="min-h-[90vh] flex items-center justify-center px-2">
     <div
-        class="w-full max-w-4xl rounded flex flex-col lg:flex-row gap-4 shadow-xl"
+        class="w-full max-w-5xl rounded flex flex-col lg:flex-row gap-4 shadow-xl"
     >
-        <div class="w-full p-8 lg:flex-[2] mt-4 sm:mt-0 text-lg bg-primary">
+        <div class="w-full p-8 lg:flex-[2] mt-4 sm:mt-0 text-lg bg-primary text-primary-content">
             <h2 class="text-3xl font-semibold mb-4">Contact Details</h2>
-            <p class="mb-2"><strong>Email:</strong> contact@example.com</p>
-            <p class="mb-2"><strong>Phone:</strong> +1 (123) 456-7890</p>
+            <p class="mb-2"><strong>Email:</strong> @Model.Email </p>
+            <p class="mb-2"><strong>Phone:</strong> @Model.PhoneNumber</p>
             <p class="mb-2">
-                <strong>Address:</strong> 123 Main Street, City, Country
+                <strong>Address:</strong> @Model.Address
             </p>
         </div>
-        <form class="w-full sm:w-2/3 p-8 mx-auto lg:flex-[4]" asp-action="Create" asp-controller="Support" asp-area="Admin">
-            <h1 class="text-3xl font-semibold mb-6 text-center lg:text-left">Send a Message</h1>
-            <div class="form-control w-full max-w-2xl mb-3">
-                <input
-                    type="text"
-                    placeholder="Full Name"
-                    class="input input-bordered w-full shadow-lg"
-                />
-                <p id="emailError" class="text-error mt-1"></p>
-            </div>
-            <div class="form-control w-full max-w-2xl mb-3">
-                <input
-                    type="email"
-                    placeholder="Email Address"
-                    class="input input-bordered w-full shadow-lg"
-                />
-                <p id="emailError" class="text-error mt-1"></p>
-            </div>
-            <div class="form-control w-full max-w-2xl mb-3">
-                <textarea
-              class="textarea textarea-bordered w-full h-56 shadow-lg"
-              placeholder="Message"
-            ></textarea>
-            </div>
-            <div class="flex items-center justify-center">
-                <button type="submit" class="btn btn-primary shadow-lg">Send Message</button>
-            </div>
-        </form>
+        <div id="map" class="lg:flex-[5] h-[500px] border rounded-lg"></div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var map = L.map('map').setView([51.505, -0.09], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        var marker = L.marker([51.5, -0.09]).addTo(map)
+            .bindPopup('A sample location.')
+            .openPopup();
+    </script>
+}

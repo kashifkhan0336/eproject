@@ -1,0 +1,168 @@
+﻿@model List<Survey>
+@using System.Security.Claims
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    Layout = "_LayoutDefault";// Gets the user's ID
+}
+    
+
+<div class="drawer drawer-end z-20">
+    <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content flex flex-col items-center justify-center">
+        <!-- Page content here -->
+        <label for="my-drawer-2"
+               class="btn btn-primary mt-4 drawer-button md:hidden">More Details</label>
+    </div>
+    <div class="drawer-side">
+        <label for="my-drawer-2" class="drawer-overlay"></label>
+        <div class="flex flex-col bg-base-200 p-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-3xl font-bold mb-6">Total Surveys</h1>
+                <label for="my-drawer-2" class="inline-block mb-6 drawer-button">Close</label>
+            </div>
+            <div class="h-[500px] overflow-y-scroll pr-4">
+                <div class="card w-full bg-primary text-primary-content shadow-xl mb-3">
+                    <div class="card-body">
+                        <h2 class="card-title">Card title!</h2>
+                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                    </div>
+                </div>
+                <div class="card w-full bg-primary text-primary-content shadow-xl mb-5">
+                    <div class="card-body">
+                        <h2 class="card-title">Card title!</h2>
+                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                    </div>
+                </div>
+                <div class="card w-full bg-primary text-primary-content shadow-xl mb-5">
+                    <div class="card-body">
+                        <h2 class="card-title">Card title!</h2>
+                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                    </div>
+                </div>
+                <div class="card w-full bg-primary text-primary-content shadow-xl mb-5">
+                    <div class="card-body">
+                        <h2 class="card-title">Card title!</h2>
+                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                    </div>
+                </div>
+            </div>
+            <h1 class="text-3xl font-bold mb-6 mt-10">Completed Surveys</h1>
+            <div class="h-[500px] overflow-y-scroll pr-4">
+                <div class="card w-full bg-primary text-primary-content shadow-xl mb-5">
+                    <div class="card-body">
+                        <h2 class="card-title">Card title!</h2>
+                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                    </div>
+                </div>
+                <div class="card w-full bg-primary text-primary-content shadow-xl mb-5">
+                    <div class="card-body">
+                        <h2 class="card-title">Card title!</h2>
+                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                    </div>
+                </div>
+                <div class="card w-full bg-primary text-primary-content shadow-xl mb-5">
+                    <div class="card-body">
+                        <h2 class="card-title">Card title!</h2>
+                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                    </div>
+                </div>
+                <div class="card w-full bg-primary text-primary-content shadow-xl mb-5">
+                    <div class="card-body">
+                        <h2 class="card-title">Card title!</h2>
+                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                    </div>
+                </div>
+                <div class="card w-full bg-primary text-primary-content shadow-xl mb-5">
+                    <div class="card-body">
+                        <h2 class="card-title">Card title!</h2>
+                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w-full lg:container mx-auto mt-6 px-2">
+    <div class="flex">
+        <div class="md:flex-[3] flex-1 flex flex-col">
+            <h1 class="text-3xl font-bold mb-6">All Surveys</h1>
+            @if (ViewBag.NotParticipatedSurveys != null && ViewBag.NotParticipatedSurveys.Count > 0)
+            {
+                <ul>
+                    @foreach (Survey survey in ViewBag.NotParticipatedSurveys)
+                    {
+                        @if (survey.Allowed.Any(allowedRole => User.IsInRole(allowedRole.RoleName)))
+                        {
+                            <div class="card w-full shadow-xl bg-base-100 mb-6">
+                                <div class="card-body">
+                                    <h2 class="card-title">@survey.Name</h2>
+                                    <p>@survey.Description</p>
+                                    <div class="card-actions justify-end">
+                                        <a class="btn btn-primary" href="/participant/join?surveyId=@survey.Id">Join</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No surveys available for participation.</p>
+            }
+
+        </div>
+        <div class="hidden md:flex divider divider-horizontal"></div>
+        <div class="hidden md:flex md:flex-[2] flex-col">
+            <h1 class="text-3xl font-bold mb-6">Participated Surveys</h1>
+            <div class="h-[500px] overflow-y-scroll pr-4">
+                @if (!Model.Any(survey => survey.Participants.Any(p => p.EprojectUserId == userId)))
+                {
+                    <p>You have not participated in any surveys.</p>
+                }
+                else
+                {
+                    @foreach (var survey in Model.Where(survey => survey.Participants.Any(p => p.EprojectUserId == userId)))
+                    {
+
+                        <div class="card w-full bg-primary text-primary-content shadow-xl mb-3">
+                            <div class="card-body">
+                                <h2 class="card-title">@survey.Name</h2>
+                                <p>@survey.Description</p>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <h1 class="text-3xl font-bold mb-6 mt-10">Completed Surveys</h1>
+            <div class="h-[500px] overflow-y-scroll pr-4">
+                @if (!Model.Any(survey => survey.Completions.Any(p => p.EprojectUserId == userId)))
+                {
+                    <p>You have not completed any surveys.</p>
+                }
+                else
+                {
+                    @foreach (var survey in Model.Where(survey => survey.Completions.Any(p => p.EprojectUserId == userId)))
+                    {
+                        @foreach (var completion in survey.Completions)
+                        {
+                            <div class="card w-full bg-primary text-primary-content shadow-xl mb-5">
+                                <div class="card-body">
+                                    <h2 class="card-title">@survey.Name</h2>
+                                    <p>@completion.CompletionTime</p>
+                                    <div class="card-actions justify-end">
+                                        <button class="btn btn-primary" title="Points">@completion.Points</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

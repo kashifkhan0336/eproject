@@ -34,10 +34,9 @@ namespace Eproject.Areas.User.Controllers
         {
             ModelState.MarkFieldSkipped("EprojectUser");
             ModelState.MarkFieldSkipped("EprojectUserId");
-            var _ =seminarEntry.PresentationMaterial.FileName;
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return View("Create/Index", seminarEntry);
             }
 
             // Get the current logged-in user's ID

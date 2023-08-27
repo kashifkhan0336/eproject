@@ -428,7 +428,7 @@ $(function () {
         };
         $.ajax({
             type: "POST",
-            url: "/survey/Delete", // Replace "ControllerName" with the actual controller name
+            url: "delete", // Replace "ControllerName" with the actual controller name
             data: JSON.stringify(dataToSend),
             contentType: "application/json", // Set the content type to JSON
             success: function (response) {
