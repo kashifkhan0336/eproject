@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "autoprefixer": "^10.4.15",
+    "daisyui": "^3.6.3",
+    "postcss": "^8.4.28",
+    "tailwindcss": "^3.3.3"
+  },
+  "scripts": {
+    "css:build": "npx tailwind build ./wwwroot/css/site.css -o ./wwwroot/css/output.css"
+  }
+}

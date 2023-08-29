@@ -1,4 +1,5 @@
-﻿@*
+﻿@model Survey
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -8,6 +9,7 @@
 
 <div class="lg:container mx-auto p-2">
     <div id="surveyElement" data-survey-id="@surveyId"></div>
+    <input type="hidden" value="@Model.SurveyData"/>
 </div>
 
 
@@ -118,7 +120,8 @@
         Survey.Serializer.addProperty("question", {
             name: "score:number"
         });
-        const survey = new Survey.Model(json);
+        console.log(@Html.Raw(Json.Serialize(Model.SurveyData)))
+        const survey = new Survey.Model(@Html.Raw(Json.Serialize(Model.SurveyData)));
 
         // You can delete the line below if you do not use a customized theme
         survey.applyTheme(themeJson);

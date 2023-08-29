@@ -1,13 +1,16 @@
 ﻿@page
+@inject UserManager<EprojectUser> _userManager
+@using Eproject.Models
 @model IndexModel
 @{
-    Layout = "_LayoutDefault";
+    EprojectUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+    var isAdmin = User.IsInRole("Admin");
+    Layout = isAdmin ? "_Layout" : "_LayoutDefault";
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
+
 <div class="row">
     <div class="col-md-6">
         <form id="profile-form" method="post">
@@ -33,6 +36,44 @@
         </form>
     </div>
 </div>
+@*<div class="flex items-center justify-center h-screen">
+    <div class="max-w-2xl w-full px-6 py-8 bg-white shadow-lg rounded-lg">
+        <h2 class="text-3xl font-semibold mb-6">Profile</h2>
+        <div class="grid grid-cols-1 gap-4">
+            <div>
+                <label class="block font-semibold text-primary mb-1">Username</label>
+                <p class="text-gray-700">@user.UserName</p>
+            </div>
+            <div>
+                <label class="block font-semibold text-primary mb-1">Roll No</label>
+                <p class="text-gray-700">@user.Code</p>
+            </div>
+            <div>
+                <label class="block font-semibold text-primary mb-1">Class</label>
+                <p class="text-gray-700">@user.Class</p>
+            </div>
+            <div>
+                <label class="block font-semibold text-primary mb-1">Specification</label>
+                <p class="text-gray-700">@user.Specification</p>
+            </div>
+            <div>
+                <label class="block font-semibold text-primary mb-1">Section</label>
+                <p class="text-gray-700">@user.Section</p>
+            </div>
+            <div>
+                <label class="block font-semibold text-primary mb-1">Date of Join</label>
+                <p class="text-gray-700">@user.AdmissionDate.ToShortDateString()</p>
+            </div>
+
+            <div class="mt-6">
+                <label class="block font-semibold text-primary mb-1">Password</label>
+                <a href="/Identity/Account/Manage/changepassword" class="btn btn-primary">
+                    Change Password
+                </a>
+            </div>
+        </div>
+    </div>
+</div>*@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

@@ -21,6 +21,7 @@ namespace Eproject.Areas.Controllers.Admin
     {
         public int Id { get; set; }
     }
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class FaqController : Controller
     {

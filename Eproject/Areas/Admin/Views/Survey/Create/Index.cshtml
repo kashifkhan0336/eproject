@@ -20,33 +20,36 @@
     </div>
     <div class="form-group">
         <label asp-for="SurveyData"></label>
-        <input asp-for="SurveyData" class="form-control" />
+        <div id="jsoneditor"></div>
+        <input type="hidden" asp-for="SurveyData" id="SurveyData"/> <!-- Hidden input for SurveyData -->
         <span asp-validation-for="SurveyData" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label>Allowed Roles</label>
-        <div class="switch-container">
-            <label class="switch-label">Student</label>
-            <label class="switch">
-                <input type="checkbox" asp-for="@Model.AllowedRoles[0].RoleName" class="switch-input" value="Student" />
-                <span class="switch-toggle-slider">
-                    <span class="switch-on"></span>
-                    <span class="switch-off"></span>
-                </span>
-            </label>
+        <div class="form-group">
+            <label>Allowed Roles</label>
+            <div class="switch-container">
+                <label class="switch-label">Student</label>
+                <label class="switch">
+                    <input type="checkbox" name="AllowedRoles[0].RoleName" class="switch-input" value="Student" />
+                    <span class="switch-toggle-slider">
+                        <span class="switch-on"></span>
+                        <span class="switch-off"></span>
+                    </span>
+                </label>
+            </div>
 
-        </div>
-
-        <div class="switch-container">
-            <label class="switch-label">Faculty</label>
-            <label class="switch">
-                <input type="checkbox" asp-for="@Model.AllowedRoles[1].RoleName" class="switch-input" value="Faculty" />
-                <span class="switch-toggle-slider">
-                    <span class="switch-on"></span>
-                    <span class="switch-off"></span>
-                </span>
-            </label>
-
+            <div class="switch-container">
+                <label class="switch-label">Faculty</label>
+                <label class="switch">
+                    <input type="checkbox" name="AllowedRoles[1].RoleName" class="switch-input" value="Faculty" />
+                    <span class="switch-toggle-slider">
+                        <span class="switch-on"></span>
+                        <span class="switch-off"></span>
+                    </span>
+                </label>
+            </div>
+            <span asp-validation-for="AllowedRoles" class="text-danger"></span>
+            <!-- Add more switch containers for other roles if needed -->
         </div>
         <span asp-validation-for="AllowedRoles" class="text-danger"></span>
         <!-- Add more switch containers for other roles if needed -->
@@ -54,3 +57,36 @@
 
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
+@section Scripts
+    {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.10.2/jsoneditor.js"></script>
+    <script>
+        const container = document.getElementById('jsoneditor');
+        const options = {
+            schema: { allowAny: true }, // Enable repair JSON feature
+            mode: 'tree', // Display tree view by default
+            modes: ['tree', 'text'], // Allow switching between tree and text views
+        };
+        const editor = new JSONEditor(container, options);
+
+        // Populate JSONEditor with initial data
+        const initialData = JSON.parse('{"title":"Scored Quiz Example","showProgressBar":"top","pages":[{"elements":[{"type":"radiogroup","name":"civilwar","title":"When was the American Civil War?","choices":["1796-1803","1810-1814","1861-1865","1939-1945"],"correctAnswer":"1861-1865","score":5},{"type":"radiogroup","name":"libertyordeath","title":"Whose quote is this: \\"Give me liberty, or give me death\\"?","choicesOrder":"random","choices":["John Hancock","James Madison","Patrick Henry","Samuel Adams"],"correctAnswer":"Patrick Henry","score":5},{"type":"radiogroup","name":"magnacarta","title":"What is Magna Carta?","choicesOrder":"random","choices":["The foundation of the British parliamentary system","The Great Seal of the monarchs of England","The French Declaration of the Rights of Man","The charter signed by the Pilgrims on the Mayflower"],"correctAnswer":"The foundation of the British parliamentary system","score":5}]}]}');
+        editor.set(initialData);
+
+        // Handle form submission
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent the default form submission
+            // Now manually submit the form
+            form.submit();
+        });
+        setInterval(()=>{
+
+
+
+            const updatedData = editor.get();
+            const surveyDataInput = document.getElementById('SurveyData');
+            surveyDataInput.value = JSON.stringify(updatedData);
+        },500)
+    </script>
+}

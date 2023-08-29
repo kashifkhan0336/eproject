@@ -9,6 +9,7 @@ using System.Data;
 
 namespace Eproject.Areas.Controllers.Admin
 {
+    [Authorize(Roles = "Admin")]
     public class AjaxController : Controller
     {
         private readonly ILogger<FaqController> _logger;

@@ -1,0 +1,152 @@
+﻿@using Eproject.Models.DTO
+@model UpdateSurveyDto
+
+@{
+    ViewData["Title"] = "Update Survey";
+}
+
+<h2>Update Survey</h2>
+<style>
+    /* Add your custom styles here */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .switch-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .switch-label {
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 20px;
+    }
+
+    .switch-input {
+        display: none;
+    }
+
+    .switch-toggle-slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: 0.4s;
+    }
+
+    .switch-on {
+        width: 50%;
+        height: 100%;
+
+        border-radius: 50%;
+        transition: 0.4s;
+    }
+
+    .switch-off {
+        width: 50%;
+        height: 100%;
+        background-color: #aaa;
+        border-radius: 50%;
+        transition: 0.4s;
+    }
+
+    .switch-input:checked + .switch-toggle-slider {
+
+    }
+
+        .switch-input:checked + .switch-toggle-slider .switch-on {
+            transform: translateX(100%);
+        }
+</style>
+
+<form asp-controller="Survey" asp-action="Update" asp-area="Admin" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SurveyData">Survey Data</label>
+        <div id="jsoneditor"></div>
+        <input type="hidden" asp-for="SurveyData" id="SurveyData" />
+        <span asp-validation-for="SurveyData" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Allowed Roles</label>
+        <div class="switch-container">
+            <label class="switch-label">Student</label>
+            <label class="switch">
+                <input type="checkbox" asp-for="IsStudentAllowed" class="switch-input" />
+                <span class="switch-toggle-slider">
+                    <span class="switch-on"></span>
+                    <span class="switch-off"></span>
+                </span>
+            </label>
+        </div>
+        <div class="switch-container">
+            <label class="switch-label">Faculty</label>
+            <label class="switch">
+                <input type="checkbox" asp-for="IsFacultyAllowed" class="switch-input" />
+                <span class="switch-toggle-slider">
+                    <span class="switch-on"></span>
+                    <span class="switch-off"></span>
+                </span>
+            </label>
+        </div>
+        <!-- Add more switch containers for other roles if needed -->
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+@section Scripts
+    {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.10.2/jsoneditor.js"></script>
+    <script>
+        const container = document.getElementById('jsoneditor');
+        const options = {
+            schema: { allowAny: true }, // Enable repair JSON feature
+            mode: 'tree', // Display tree view by default
+            modes: ['tree', 'text'], // Allow switching between tree and text views
+        };
+        const editor = new JSONEditor(container, options);
+
+        // Populate JSONEditor with initial data
+        const initialData = @Html.Raw(Json.Serialize(Model.SurveyData));
+        editor.set(JSON.parse(initialData));
+
+        // Handle form submission
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent the default form submission
+            // Now manually submit the form
+            form.submit();
+        });
+        setInterval(() => {
+
+
+
+            const updatedData = editor.get();
+            const surveyDataInput = document.getElementById('SurveyData');
+            surveyDataInput.value = JSON.stringify(updatedData);
+        }, 500)
+    </script>
+}

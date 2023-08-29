@@ -16,7 +16,7 @@
                        placeholder="Seminar title"
                        class="input input-bordered w-full"
                        required/>
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <span asp-validation-for="Title" class="text-red-800"></span>
             </div>
             <div class="mb-4">
                 <input type="date"
@@ -24,7 +24,7 @@
                        name="Date"
                        class="input input-bordered w-full"
                        required/>
-                <span asp-validation-for="Date" class="text-danger"></span>
+                <span asp-validation-for="Date" class="text-red-800"></span>
             </div>
             <div class="mb-4">
                 <label for="location" class="block font-medium mb-2">Location:</label>
@@ -33,7 +33,7 @@
                        name="Location"
                        class="input input-bordered w-full"
                        required/>
-                <span asp-validation-for="Location" class="bg-error"></span>
+                <span asp-validation-for="Location" class="text-red-800"></span>
             </div>
             <div class="mb-4">
                 <input type="number"
@@ -42,7 +42,7 @@
                        placeholder="Participants"
                        class="input input-bordered w-full"
                        required/>
-                <span asp-validation-for="NumberOfParticipants" class="text-danger"></span>
+                <span asp-validation-for="NumberOfParticipants" class="text-red-800"></span>
             </div>
             <div class="mb-4">
                 <textarea id="description"
@@ -51,7 +51,7 @@
                   class="textarea textarea-bordered w-full"
                   rows="4"
                   required></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <span asp-validation-for="Description" class="text-red-800"></span>
             </div>
             <div class="mb-4">
                 <label for="presentation" class="block font-medium mb-2">Presentation Material:</label>
@@ -59,7 +59,7 @@
                        id="presentation"
                        name="PresentationMaterial"
                        class="file-input file-input-bordered w-full"/>
-                <span asp-validation-for="PresentationMaterial" class="text-blue-600"></span>
+                <span asp-validation-for="PresentationMaterial" class="text-red-800"></span>
             </div>
             <div class="mb-4">
                 <textarea id="impact"
@@ -68,7 +68,7 @@
                   class="w-full textarea textarea-bordered"
                   rows="4"
                   required></textarea>
-                <span asp-validation-for="Impact" class="text-danger"></span>
+                <span asp-validation-for="Impact" class="text-red-800"></span>
             </div>
             <button type="submit"
                     class="btn btn-primary">

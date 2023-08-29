@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Eproject.Data;
 using Eproject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using Newtonsoft.Json;
 
 namespace Eproject.Areas.Controllers.Admin
 {
+    [Authorize(Roles = "Admin")]
     public class JsonController : Controller
     {
         private readonly ILogger<FaqController> _logger;

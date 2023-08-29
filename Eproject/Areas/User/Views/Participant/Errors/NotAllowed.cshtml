@@ -4,4 +4,10 @@
 @{
     Layout = "_LayoutDefault";
 }
-<h1>You are not allowed to take this survey</h1>
+<div class="h-screen flex justify-center items-center">
+    <div class="text-center">
+        <h1 class="text-4xl font-bold mb-2">Not Allowed</h1>
+        <p class="text-xl mb-2">You are not allowed to participate in this survey</p>
+        <a asp-controller="Home" asp-action="Index" asp-area="User" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>

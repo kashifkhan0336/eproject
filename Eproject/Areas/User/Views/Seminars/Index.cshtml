@@ -8,6 +8,7 @@
 
     Layout = "_LayoutDefault";
 }
+
 @if (User.IsInRole("Faculty") || User.IsInRole("Admin"))
 {
     <div class="flex justify-end my-3 lg:container mx-auto mt-13">
@@ -28,7 +29,7 @@
                     <td>@seminar.Location</td>
                     <td>@(seminar.EprojectUser != null ? seminar.EprojectUser.UserName : "Unknown User")</td>
                 </tr>*@
-                <div class="card bg-neutral">
+                <div class="card bg-neutral text-neutral-content">
                     <div class="card-body">
                         <h3 class="text-xl font-semibold mb-2">@seminar.Title</h3>
                         <p class="mb-2">Date: @seminar.Date.ToShortDateString()</p>

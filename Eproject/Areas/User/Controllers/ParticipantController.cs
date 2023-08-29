@@ -114,7 +114,7 @@ namespace Eproject.Areas.User.Controllers
                 return View("Errors/AlreadyCompleted");
             }
             if (isParticipant)
-                return View("Index");
+                return View("Index", survey);
 
             // Add the currently logged-in user to the survey's Participants collection
             survey.Participants ??= new List<SurveyEprojectUser>();
@@ -122,8 +122,8 @@ namespace Eproject.Areas.User.Controllers
 
             // Save changes to the database
             await _context.SaveChangesAsync();
-
-            return View("Index");
+            ViewData["SurveyData"] = survey.SurveyData;
+            return View("Index", survey);
         }
     }
 }

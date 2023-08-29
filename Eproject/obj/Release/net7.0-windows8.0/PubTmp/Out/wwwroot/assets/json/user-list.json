@@ -1,0 +1,70 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "full_name": "Kashif Khan",
+      "role": "Admin",
+      "username": "gslixby0",
+      "email": "kashifkhan0336@gmail.com",
+      "specification": "Science",
+      "section": "A",
+      "status": 2,
+      "roll_number": "12347",
+      "admission_date":  "12/5/2021",
+      "class": "1"
+    },
+    {
+      "id": 2,
+      "full_name": "Rahman Khan",
+      "role": "Student",
+      "username": "hredmore1",
+      "email": "hredmore1@imgur.com",
+      "specification": "Practical Education",
+      "section": "C",
+      "status": 1,
+      "roll_number": "12145",
+      "admission_date": "12/1/2022",
+      "class": "2"
+    },
+    {
+      "id": 3,
+      "full_name": "Saasta Fawad",
+      "role": "Student",
+      "username": "msicely2",
+      "email": "fawad@who.int",
+      "specification": "Commerce",
+      "section": "D",
+      "status": 0,
+      "roll_number": "12325",
+      "admission_date": "13/5/2020",
+      "class": "4"
+    },
+    {
+      "id": 4,
+      "full_name": "Nalla Fahad",
+      "role": "Faculty",
+      "username": "crisby3",
+      "email": "fahad@nalla.com",
+      "specification": "Arts",
+      "section": "B",
+      "status": 0,
+      "roll_number": "12445",
+      "admission_date": "7/4/2021",
+      "class": "7"
+    },
+    {
+      "id": 5,
+      "full_name": "Hamza Halal Kamai",
+      "role": "Faculty",
+      "username": "mhurran4",
+      "email": "hamza@halalkamai.com",
+      "specification": "Science",
+      "section": "A",
+      "status": 0,
+
+      "roll_number": "12345",
+      "admission_date": "12/5/2019",
+      "class": "4"
+    }
+  ]
+}
